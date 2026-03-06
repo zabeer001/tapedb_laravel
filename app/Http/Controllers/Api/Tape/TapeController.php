@@ -16,7 +16,7 @@ class TapeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:api', 'role:admin,superadmin']);
+        $this->middleware(['auth:api', 'role:admin,superadmin'])->except(['index','show']);
     }
 
     public function index(Request $request, TapeIndexService $service): JsonResponse

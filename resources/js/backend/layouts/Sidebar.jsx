@@ -11,7 +11,7 @@ import {
 const menuItems = [
     { label: 'Dashboard', href: '/dashbaord', icon: LayoutDashboard },
     { label: 'Users', href: '/users', icon: Users },
-    { label: 'Tapes', href: '/tapes', icon: Disc3 },
+    { label: 'Tapes', href: '/dashbaord/tapes', icon: Disc3 },
    
     { label: 'Reports', href: '/reports', icon: BarChart3 },
     { label: 'Settings', href: '/settings', icon: Settings },
