@@ -1,0 +1,125 @@
+DB-per-tenant flow (end to end)
+0) You have a “central database”
+
+This is the only DB your app always knows at the start.
+
+Central DB stores:
+
+tenants list (id, name, status)
+
+tenant domain/subdomain (e.g. acme.example.com)
+
+which database name belongs to that tenant (e.g. tenant_acme_db)
+
+sometimes tenant DB credentials (or a shared DB user)
+
+Think of central DB as: Tenant registry.
+
+1) A customer signs up (tenant creation starts)
+
+When someone creates a new company account, your app:
+
+Creates a tenant record in central DB:
+
+Tenant name: “Acme”
+
+Domain: acme.example.com
+
+Status: “provisioning”
+
+Database name reserved: tenant_acme_db
+
+2) Provisioning: create the tenant database
+
+Now the system provisions infrastructure:
+
+A) Create a new database
+
+DB name: tenant_acme_db
+
+B) Create a DB user (optional but recommended)
+
+username: tenant_acme_user
+
+password: random strong password
+
+C) Grant permissions
+
+Give that user access only to tenant_acme_db
+
+Usually full privileges on that DB (for migrations + app writes)
+
+(Sometimes people use one shared DB user for all tenant DBs. Simpler, but less isolated.)
+
+3) Prepare schema (migrations)
+
+The system now creates tables inside the new DB:
+
+runs migrations (users, bookings, orders, etc.)
+
+optionally seeds initial data (roles, default settings)
+
+At the end, the tenant DB is ready.
+
+4) Mark tenant as “active”
+
+Update central DB tenant row:
+
+status: active
+
+database connection info stored/confirmed
+
+Now the tenant can use the app.
+
+5) Request-time resolution (how app knows which DB to use)
+
+When someone visits:
+
+acme.example.com
+
+Your app does:
+
+Read the incoming host/subdomain: acme
+
+Look up in central DB:
+
+tenant = Acme
+
+DB name = tenant_acme_db
+
+Switch the DB connection to that tenant DB
+
+Run the request (queries go to tenant DB)
+
+So each tenant’s traffic goes to their own DB.
+
+6) Everyday life operations
+Tenant backup/restore
+
+backup only tenant_acme_db
+
+restore only that tenant DB (easy)
+
+Tenant delete
+
+disable tenant in central DB
+
+optionally drop database tenant_acme_db
+
+Updates
+
+when you deploy new version:
+
+run migrations on every tenant DB
+
+this is the main “ops complexity” part
+
+Important note about shared hosting
+
+This whole flow only works if:
+
+your hosting allows creating many databases
+
+and your app is allowed to run provisioning tasks (or you do it manually)
+
+If your plan allows only 1 DB, DB-per-tenant is simply not possible there.

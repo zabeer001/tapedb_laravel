@@ -1,0 +1,75 @@
+1) Decide what is “owned” by a user
+
+Owned tables: orders, products, categories, bookings, etc.
+
+Shared tables (no user_id): things like “countries”, “plan list”, “static settings”, etc.
+
+2) Add user_id to every owned table
+
+Every owned row must have user_id
+
+Add an index on user_id (important for speed)
+
+Enforce it with FK if you want (user_id → users.id)
+
+3) Make user separation automatic at the model level
+
+Use a global scope so every query on owned models automatically becomes:
+
+WHERE user_id = current_logged_in_user_id
+
+That means:
+
+Order::all() returns only my orders
+
+Product::latest() returns only my products
+
+Same for category, invoice, etc.
+
+4) Auto-set user_id on create
+
+When creating an owned record, the model should automatically set:
+
+user_id = current user id
+
+So you never pass user_id from request (security-safe + clean)
+
+5) Centralize it (cleanest structure)
+
+Put the logic in one reusable place:
+
+either a BaseModel (ex: UserOwnedModel)
+
+or a Trait (ex: BelongsToUser)
+
+Then apply it to every owned model (Order/Product/Category...)
+
+Result: you implement separation once, and it works everywhere.
+
+6) Plan your “admin/support view” strategy early
+
+Even in user-level SaaS, you may need:
+
+support/admin to view user data
+So choose:
+
+Admin routes can use withoutGlobalScopes() (only in admin code)
+
+Or keep a separate “admin query” repository/service that bypasses scope
+
+7) Keep controllers clean
+
+Controllers just do:
+
+list / paginate / filters (status/date/search)
+No auth()->id() logic repeated everywhere.
+
+8) Defense in depth
+
+Even with global scope:
+
+Policies for update/delete (optional but strong)
+
+Validate user can’t change user_id via request
+
+Tests: user A cannot see user B data (must-have)
