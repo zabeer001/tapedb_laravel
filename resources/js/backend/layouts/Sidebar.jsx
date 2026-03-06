@@ -3,6 +3,7 @@ import { Link, usePage } from '@inertiajs/react';
 import {
     BarChart3,
     LayoutDashboard,
+    Disc3,
     Settings,
     Users,
 } from 'lucide-react';
@@ -10,6 +11,7 @@ import {
 const menuItems = [
     { label: 'Dashboard', href: '/dashbaord', icon: LayoutDashboard },
     { label: 'Users', href: '/users', icon: Users },
+    { label: 'Tapes', href: '/tapes', icon: Disc3 },
    
     { label: 'Reports', href: '/reports', icon: BarChart3 },
     { label: 'Settings', href: '/settings', icon: Settings },

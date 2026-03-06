@@ -76,4 +76,28 @@ class FrontendController extends Controller
     {
         return Inertia::render('settings/SettingsPage');
     }
+
+    public function tapes(): Response
+    {
+        return Inertia::render('tapes/TapesPage');
+    }
+
+    public function tapeCreate(): Response
+    {
+        return Inertia::render('tapes/CreateTapePage');
+    }
+
+    public function tapeShow(int $tape): Response
+    {
+        return Inertia::render('tapes/ShowTapePage', [
+            'tapeId' => $tape,
+        ]);
+    }
+
+    public function tapeEdit(int $tape): Response
+    {
+        return Inertia::render('tapes/EditTapePage', [
+            'tapeId' => $tape,
+        ]);
+    }
 }

@@ -25,6 +25,8 @@ return new class extends Migration
             $table->text('etching')->nullable();
             $table->text('notes')->nullable();
             $table->string('qa_checked', 10)->nullable();
+            $table->string('screener', 10)->nullable();
+            $table->string('first_printer', 10)->nullable();
             $table->string('guard_color', 255)->nullable();
             $table->string('upc', 255)->nullable();
             $table->string('img1', 255)->nullable();
@@ -39,6 +41,10 @@ return new class extends Migration
             $table->index('user_id', 'user_id_idx');
             $table->index('name', 'name_idx');
             $table->index('year', 'year_idx');
+            $table->index('title', 'title_idx');
+            $table->index('qa_checked', 'qa_checked_idx');
+            $table->index('screener', 'screener_idx');
+            $table->index('first_printer', 'first_printer_idx');
         });
     }
 
