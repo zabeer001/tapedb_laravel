@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import HomePageFilters from "./_components/HomePageFilters";
 import HomePageHeader from "./_components/HomePageHeader";
-import HomePageTapePreviewModal from "./_components/HomePageTapePreviewModal";
-import HomePageTable from "./_components/HomePageTable";
+import HomePageTapePreviewModal from "./_components/HomePageTapePreviewModal/HomePageTapePreviewModal";
+import HomePageTable from "./_components/HomePageTable/HomePageTable";
 import useHomePageStore from "./_store/useHomePageStore";
 
 export default function TapeDBDaisyLayout() {

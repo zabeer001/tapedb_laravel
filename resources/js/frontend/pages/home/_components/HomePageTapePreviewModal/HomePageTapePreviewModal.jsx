@@ -1,5 +1,5 @@
 import React from "react";
-import useHomePageStore from "../_store/useHomePageStore";
+import useHomePageStore from "../../_store/useHomePageStore";
 
 const IMAGE_FIELDS = ["img1", "img2", "img3", "img4", "img5", "img6"];
 

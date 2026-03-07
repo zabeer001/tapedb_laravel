@@ -72,8 +72,8 @@ function ReportsPage() {
   }, [summary]);
 
   return (
-    <div className="min-h-screen from-base-200 via-base-200 to-base-300">
-      <div className="mx-auto w-full max-w-[110rem] space-y-6 px-4 py-6 sm:px-5 lg:px-6">
+    <div className="min-h-screen">
+      <div className="mx-auto w-full max-w-[110rem] space-y-4 px-3 py-4 sm:space-y-6 sm:px-5 sm:py-6 lg:px-6">
         <ReportsHeroSection
           userRole={userRole}
           totalEntries={summary.total_entries}
