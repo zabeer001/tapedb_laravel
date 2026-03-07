@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { apiRequest, setAccessToken, setRole } from '../../../shared/apiClient';
+import useAuth from '../../../shared/hooks/useAuth';
 
 function SignInPage() {
+    const { isAuthenticated } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            window.location.href = '/dashbaord';
+        }
+    }, [isAuthenticated]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

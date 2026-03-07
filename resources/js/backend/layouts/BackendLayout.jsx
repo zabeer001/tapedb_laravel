@@ -8,12 +8,35 @@ import themeOptions from '../../shared/themeOptions';
 
 function BackendLayout({ children }) {
     const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'forest');
+    const [currentUser, setCurrentUser] = useState(null);
     const role = useMemo(() => localStorage.getItem('role') || 'admin', []);
     const { isBootstrapping } = useAuthHook();
 
     useEffect(() => {
         localStorage.setItem('theme', theme);
     }, [theme]);
+
+    useEffect(() => {
+        if (isBootstrapping) {
+            return;
+        }
+
+        const loadProfile = async () => {
+            try {
+                const payload = await apiRequest('/api/profile', { auth: true });
+                setCurrentUser(payload?.data || null);
+            } catch (error) {
+                setCurrentUser(null);
+            }
+        };
+
+        loadProfile();
+        window.addEventListener('focus', loadProfile);
+
+        return () => {
+            window.removeEventListener('focus', loadProfile);
+        };
+    }, [isBootstrapping]);
 
     const signOut = async () => {
         try {
@@ -44,7 +67,13 @@ function BackendLayout({ children }) {
                 <input id="admin-drawer" type="checkbox" className="drawer-toggle" />
 
                 <div className="drawer-content flex min-h-screen flex-col">
-                    <Navbar theme={theme} themes={themeOptions} setTheme={setTheme} signOut={signOut} />
+                    <Navbar
+                        theme={theme}
+                        themes={themeOptions}
+                        setTheme={setTheme}
+                        signOut={signOut}
+                        currentUser={currentUser}
+                    />
 
                     <div className="flex-1 p-4 sm:p-6 lg:p-8">{children}</div>
 

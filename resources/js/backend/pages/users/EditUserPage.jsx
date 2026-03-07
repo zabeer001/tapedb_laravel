@@ -113,7 +113,7 @@ function EditUserPage() {
                 'Failed to update user.',
             );
 
-            window.location.href = '/users?updated=1';
+            window.location.href = '/dashbaord/users?updated=1';
         } catch (err) {
             setError(err.message || 'Failed to update user.');
         } finally {
@@ -133,8 +133,8 @@ function EditUserPage() {
                             </p>
                         </div>
                         <div className="flex gap-2">
-                            <Link href="/users" className="btn btn-outline">Back</Link>
-                            <Link href={`/users/${userId}`} className="btn btn-ghost">View</Link>
+                            <Link href="/dashbaord/users" className="btn btn-outline">Back</Link>
+                            <Link href={`/dashbaord/users/${userId}`} className="btn btn-ghost">View</Link>
                         </div>
                     </div>
                 </div>

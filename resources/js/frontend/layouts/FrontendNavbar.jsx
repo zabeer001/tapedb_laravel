@@ -1,31 +1,36 @@
 import React from 'react';
 import { Link } from '@inertiajs/react';
+import useAuth from '../../shared/hooks/useAuth';
 
 function FrontendNavbar({ themes, theme, setTheme }) {
+    const { isAuthenticated } = useAuth();
+
     return (
         <header className="navbar relative z-[100]  rounded-2xl border border-base-300/50 bg-base-100/70 px-4 shadow-lg backdrop-blur-xl sm:px-6">
             <div className="navbar-start">
-                <img
-                    src="/images/tapedb-logo.png"
-                    alt="TapeDB logo"
-                    className="h-12 w-auto max-w-[260px] object-contain"
-                />
+                <Link href="/" className="inline-flex items-center" aria-label="Go to homepage">
+                    <img
+                        src="/images/tapedb-logo.png"
+                        alt="TapeDB logo"
+                        className="h-12 w-auto max-w-[260px] object-contain"
+                    />
+                </Link>
             </div>
 
            
 
             <div className="navbar-end gap-2">
-                <button type="button" className="btn btn-info btn-sm hidden sm:inline-flex">
+                <Link href="/site-info" className="btn btn-info btn-sm hidden sm:inline-flex">
                     Site Info
-                </button>
-                <button type="button" className="btn btn-success btn-sm hidden sm:inline-flex">
+                </Link>
+                <Link href="/stats" className="btn btn-success btn-sm hidden sm:inline-flex">
                     Stats
-                </button>
+                </Link>
                 <Link
-                    href="/sign-in"
+                    href={isAuthenticated ? '/dashbaord' : '/sign-in'}
                     className={`btn btn-sm ${theme === 'light' ? 'btn-neutral text-neutral-content' : 'btn-primary'}`}
                 >
-                    Login
+                    {isAuthenticated ? 'Dashboard' : 'Login'}
                 </Link>
 
                 <div className="dropdown dropdown-end">

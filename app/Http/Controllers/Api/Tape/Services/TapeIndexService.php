@@ -10,7 +10,14 @@ class TapeIndexService
 {
     public function handle(Request $request): JsonResponse
     {
-        $query = Tape::query()->latest('id');
+        $query = Tape::query();
+        $sort = strtolower((string) $request->input('sort', 'newest'));
+
+        if ($sort === 'oldest') {
+            $query->oldest('id');
+        } else {
+            $query->latest('id');
+        }
 
         if ($request->filled('search')) {
             $search = (string) $request->input('search');
@@ -20,6 +27,7 @@ class TapeIndexService
                     ->orWhere('title', 'like', "%{$search}%")
                     ->orWhere('year', 'like', "%{$search}%")
                     ->orWhere('distributor', 'like', "%{$search}%")
+                    ->orWhere('upc', 'like', "%{$search}%")
                     ->orWhere('qa_checked', 'like', "%{$search}%")
                     ->orWhere('screener', 'like', "%{$search}%")
                     ->orWhere('first_printer', 'like', "%{$search}%");
@@ -42,7 +50,7 @@ class TapeIndexService
             $query->where('year', (string) $request->input('year'));
         }
 
-        $perPage = min(100, max(1, (int) $request->input('per_page', 15)));
+        $perPage = min(100, max(1, (int) $request->input('per_page', 50)));
 
         return response()->json([
             'status' => 'success',

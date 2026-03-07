@@ -28,7 +28,7 @@ function TapesListSection() {
                         <th>QA</th>
                         <th>Screener</th>
                         <th>Printer</th>
-                        <th className="text-right">Actions</th>
+                        <th className="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

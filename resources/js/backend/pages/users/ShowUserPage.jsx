@@ -67,8 +67,8 @@ function ShowUserPage() {
                             </p>
                         </div>
                         <div className="flex gap-2">
-                            <Link href="/users" className="btn btn-outline">Back</Link>
-                            <Link href={`/users/${userId}/edit`} className="btn btn-info btn-outline">Edit</Link>
+                            <Link href="/dashbaord/users" className="btn btn-outline">Back</Link>
+                            <Link href={`/dashbaord/users/${userId}/edit`} className="btn btn-info btn-outline">Edit</Link>
                         </div>
                     </div>
                 </div>

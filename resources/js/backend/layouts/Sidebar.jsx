@@ -6,15 +6,15 @@ import {
     Disc3,
     Settings,
     Users,
+    House,
 } from 'lucide-react';
 
 const menuItems = [
     { label: 'Dashboard', href: '/dashbaord', icon: LayoutDashboard },
-    { label: 'Users', href: '/users', icon: Users },
+    { label: 'Users', href: '/dashbaord/users', icon: Users },
     { label: 'Tapes', href: '/dashbaord/tapes', icon: Disc3 },
-   
-    { label: 'Reports', href: '/reports', icon: BarChart3 },
-    { label: 'Settings', href: '/settings', icon: Settings },
+    { label: 'Settings', href: '/dashbaord/settings', icon: Settings },
+    { label: 'Back to Homepage', href: '/', icon: House, variant: 'home' },
 ];
 
 function Sidebar() {
@@ -40,10 +40,20 @@ function Sidebar() {
                             <li key={item.label} className="w-full">
                                 <Link
                                     href={item.href}
-                                    className={`flex w-full items-center gap-3 rounded-lg px-3 py-3 ${isActive ? 'active' : ''}`}
+                                    className={`flex w-full items-center gap-3 rounded-lg px-3 py-3 ${
+                                        item.variant === 'home'
+                                            ? 'mt-2 border border-primary/25 bg-primary/5 hover:bg-primary/10'
+                                            : ''
+                                    } ${isActive ? 'active' : ''}`}
                                 >
                                     <span
-                                        className={`flex h-9 w-9 items-center justify-center rounded-lg ${isActive ? 'bg-base-100/30' : 'bg-base-200 text-base-content/70'}`}
+                                        className={`flex h-9 w-9 items-center justify-center rounded-lg ${
+                                            isActive
+                                                ? 'bg-base-100/30'
+                                                : item.variant === 'home'
+                                                    ? 'bg-primary/10 text-primary'
+                                                    : 'bg-base-200 text-base-content/70'
+                                        }`}
                                     >
                                         <Icon size={18} strokeWidth={2.2} />
                                     </span>

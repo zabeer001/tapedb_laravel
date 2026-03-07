@@ -10,13 +10,14 @@ import TapesPaginationSection from './sections/TapesPaginationSection';
 function TapesPage() {
     const loadTapes = useTapesStore((state) => state.loadTapes);
     const page = useTapesStore((state) => state.page);
+    const perPage = useTapesStore((state) => state.perPage);
     const filters = useTapesStore((state) => state.filters);
     const isLoading = useTapesStore((state) => state.isLoading);
     const error = useTapesStore((state) => state.error);
 
     useEffect(() => {
         loadTapes();
-    }, [loadTapes, page, filters.search, filters.year, filters.qa_checked, filters.screener, filters.first_printer]);
+    }, [loadTapes, page, perPage, filters.search, filters.sort, filters.year, filters.qa_checked, filters.screener, filters.first_printer]);
 
     return (
         <div className="mx-auto max-w-7xl space-y-6">

@@ -12,7 +12,6 @@ class TapeStoreService
     private function validationRules(): array
     {
         return [
-            'user_id' => 'nullable|integer|exists:users,id',
             'name' => 'nullable|string|max:191',
             'title' => 'nullable|string|max:191',
             'year' => 'nullable|string|max:50',
@@ -41,6 +40,7 @@ class TapeStoreService
     public function handle(Request $request): JsonResponse
     {
         $validated = $request->validate($this->validationRules());
+        $validated['user_id'] = (int) ($request->user()?->id ?? auth('api')->id());
 
         foreach (['img1', 'img2', 'img3', 'img4', 'img5', 'img6'] as $field) {
             if ($request->hasFile($field)) {

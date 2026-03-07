@@ -83,7 +83,7 @@ function CreateUserPage() {
                 'Failed to create user.',
             );
 
-            window.location.href = '/users?created=1';
+            window.location.href = '/dashbaord/users?created=1';
         } catch (err) {
             setError(err.message || 'Failed to create user.');
         } finally {
@@ -103,7 +103,7 @@ function CreateUserPage() {
                                 <span className="font-semibold uppercase">{userRole}</span>
                             </p>
                         </div>
-                        <Link href="/users" className="btn btn-outline">
+                        <Link href="/dashbaord/users" className="btn btn-outline">
                             Back
                         </Link>
                     </div>

@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { apiRequest } from "../../../../shared/apiClient";
 import { mapTapeToRow } from "../_utils/tapeMapper";
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 50;
 const QA_FILTER_ALL = "ALL";
 
 function getFilteredRows(rows, query, qaFilter) {
@@ -114,7 +114,7 @@ const useHomePageStore = create((set, get) => ({
       let currentPage = 1;
 
       while (true) {
-        const payload = await apiRequest(`/api/tapes?page=${currentPage}&per_page=100`);
+        const payload = await apiRequest(`/api/tapes?page=${currentPage}&per_page=50`);
         const items = payload?.data?.data || [];
         allRows.push(...items.map(mapTapeToRow));
 

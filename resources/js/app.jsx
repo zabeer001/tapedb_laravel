@@ -13,34 +13,48 @@ const frontendPages = import.meta.glob('./frontend/pages/**/*.jsx');
 const commonPages = import.meta.glob('./common/**/*.jsx');
 const backendPages = import.meta.glob('./backend/pages/**/*.jsx');
 
+function resolveCommonLayout(pageNode) {
+    const explicitContext = pageNode?.props?.layoutContext;
+    if (explicitContext === 'backend') {
+        return <BackendLayout>{pageNode}</BackendLayout>;
+    }
+
+    if (explicitContext === 'frontend') {
+        return <FrontendLayout>{pageNode}</FrontendLayout>;
+    }
+
+    const currentPath = window.location.pathname || '/';
+    if (currentPath.startsWith('/dashbaord')) {
+        return <BackendLayout>{pageNode}</BackendLayout>;
+    }
+
+    return <FrontendLayout>{pageNode}</FrontendLayout>;
+}
+
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
     resolve: async (name) => {
         if (name.startsWith('common/')) {
             const page = await resolvePageComponent(`./${name}.jsx`, commonPages);
-            page.default.layout = page.default.layout || ((pageNode) => (
-                pageNode.props.layoutContext === 'backend'
-                    ? <BackendLayout>{pageNode}</BackendLayout>
-                    : <FrontendLayout>{pageNode}</FrontendLayout>
-            ));
+            page.default.layout = page.default.layout || ((pageNode) => resolveCommonLayout(pageNode));
             return page;
         }
 
-        if (name.startsWith('frontend/')) {
+        if (name.startsWith('frontend/pages/')) {
             const page = await resolvePageComponent(`./${name}.jsx`, frontendPages);
             page.default.layout = page.default.layout || ((pageNode) => <FrontendLayout>{pageNode}</FrontendLayout>);
             return page;
         }
 
-        try {
-            const page = await resolvePageComponent(`./frontend/pages/${name}.jsx`, frontendPages);
-            page.default.layout = page.default.layout || ((pageNode) => <FrontendLayout>{pageNode}</FrontendLayout>);
-            return page;
-        } catch {
-            const page = await resolvePageComponent(`./backend/pages/${name}.jsx`, backendPages);
+        if (name.startsWith('backend/pages/')) {
+            const page = await resolvePageComponent(`./${name}.jsx`, backendPages);
             page.default.layout = page.default.layout || ((pageNode) => <BackendLayout>{pageNode}</BackendLayout>);
             return page;
         }
+
+        throw new Error(
+            `Invalid Inertia page path "${name}". Use only "frontend/pages/...", "backend/pages/...", or "common/...".`
+        );
     },
     setup({ el, App, props }) {
         const root = createRoot(el);

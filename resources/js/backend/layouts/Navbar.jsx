@@ -1,6 +1,11 @@
 import React from 'react';
 
-function Navbar({ theme, themes, setTheme, signOut }) {
+function Navbar({ theme, themes, setTheme, signOut, currentUser }) {
+    const avatarUrl = currentUser?.avatar_url || '';
+    const userName = currentUser?.name || 'Signed User';
+    const roleLabel = currentUser?.role || 'user';
+    const fallbackInitial = userName.charAt(0).toUpperCase();
+
     return (
         <header className="navbar relative z-[100] border-b border-base-300 bg-base-100 px-4 sm:px-6">
             <div className="flex-none lg:hidden">
@@ -16,6 +21,24 @@ function Navbar({ theme, themes, setTheme, signOut }) {
             </div>
 
             <div className="flex items-center gap-2">
+                <div className="hidden items-center gap-2 rounded-xl border border-base-300 bg-base-200 px-2 py-1 sm:flex">
+                    <div className="avatar">
+                        <div className="h-9 w-9 rounded-xl bg-base-300">
+                            {avatarUrl ? (
+                                <img src={avatarUrl} alt="Signed in user" className="h-full w-full object-cover" />
+                            ) : (
+                                <span className="flex h-full w-full items-center justify-center text-xs font-bold">
+                                    {fallbackInitial}
+                                </span>
+                            )}
+                        </div>
+                    </div>
+                    <div className="leading-tight">
+                        <p className="text-xs font-semibold">{userName}</p>
+                        <p className="text-[10px] uppercase text-base-content/60">{roleLabel}</p>
+                    </div>
+                </div>
+
                 <div className="dropdown dropdown-end">
                     <button
                         type="button"

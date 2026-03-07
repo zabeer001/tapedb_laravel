@@ -62,8 +62,16 @@ export function buildTapeQuery(params = {}) {
         query.set('page', String(params.page));
     }
 
+    if (params.per_page) {
+        query.set('per_page', String(params.per_page));
+    }
+
     if (params.search) {
         query.set('search', params.search);
+    }
+
+    if (params.sort) {
+        query.set('sort', params.sort);
     }
 
     if (params.year) {

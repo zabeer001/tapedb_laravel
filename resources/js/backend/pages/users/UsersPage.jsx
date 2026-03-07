@@ -1,5 +1,149 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { RotateCcw, Search } from 'lucide-react';
+
+const ROLE_OPTIONS = ['all', 'user', 'admin', 'superadmin'];
+
+function UsersPageHeader({ userRole }) {
+    return (
+        <section className="card bg-base-100 shadow-xl">
+            <div className="card-body">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                        <h1 className="text-3xl font-extrabold">Users</h1>
+                        <p className="mt-2 text-sm text-base-content/70">
+                            Manage your platform users here. Signed in as:{' '}
+                            <span className="font-semibold uppercase">{userRole}</span>
+                        </p>
+                    </div>
+                    <Link href="/dashbaord/users/create" className="btn btn-sm btn-neutral text-neutral-content">
+                        Add User
+                    </Link>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function UsersPageLoading() {
+    return <p className="text-sm text-base-content/70">Loading users...</p>;
+}
+
+function UsersPageError({ message }) {
+    if (!message) {
+        return null;
+    }
+
+    return <div className="alert alert-error py-2 text-sm">{message}</div>;
+}
+
+function UsersFilterSection({ searchValue, roleValue, onSearchChange, onRoleChange, onReset }) {
+    return (
+        <section className="mb-4 rounded-xl border border-base-300 bg-base-100 p-2 shadow-sm">
+            <div className="flex flex-col gap-2 lg:flex-row lg:items-center">
+                <label className="input input-bordered input-sm flex h-9 min-h-9 w-full items-center gap-1.5 rounded-lg border-base-300 bg-base-100 px-2 shadow-[0_1px_2px_rgba(0,0,0,0.03)] lg:flex-1">
+                    <Search className="size-3.5 text-base-content/40" />
+                    <input
+                        type="search"
+                        className="grow text-xs placeholder:text-base-content/40"
+                        placeholder="Search by user name or email"
+                        value={searchValue}
+                        onChange={onSearchChange}
+                    />
+                </label>
+
+                <div className="flex flex-col gap-2 sm:flex-row lg:w-auto">
+                    <select
+                        className="select select-bordered select-sm h-9 min-h-9 w-full rounded-lg border-base-300 bg-base-100 px-2 text-xs shadow-[0_1px_2px_rgba(0,0,0,0.03)] sm:w-40"
+                        value={roleValue}
+                        onChange={onRoleChange}
+                    >
+                        {ROLE_OPTIONS.map((role) => (
+                            <option key={role} value={role}>
+                                {role === 'all' ? 'All roles' : role.toUpperCase()}
+                            </option>
+                        ))}
+                    </select>
+
+                    <button
+                        type="button"
+                        className="btn btn-sm h-9 min-h-9 rounded-lg border border-base-300 bg-base-100 px-3 text-xs font-medium text-base-content shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition hover:border-base-content/20 hover:bg-base-200"
+                        onClick={onReset}
+                    >
+                        <RotateCcw className="size-3.5" />
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function UsersListSection({ users, onDeleteUser }) {
+    return (
+        <div className="overflow-x-auto">
+            <table className="table w-full table-fixed">
+                <colgroup>
+                    <col className="w-[8%]" />
+                    <col className="w-[24%]" />
+                    <col className="w-[30%]" />
+                    <col className="w-[12%]" />
+                    <col className="w-[26%]" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th className="whitespace-nowrap">ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th className="whitespace-nowrap">Role</th>
+                        <th className="pl-[5%] text-center ">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {users.length === 0 ? (
+                        <tr>
+                            <td colSpan={5} className="py-8 text-center text-base-content/70">
+                                No users found.
+                            </td>
+                        </tr>
+                    ) : (
+                        users.map((user) => (
+                            <tr key={user.id}>
+                                <td className="whitespace-nowrap">{user.id}</td>
+                                <td className="font-medium">{user.name}</td>
+                                <td className="truncate">{user.email}</td>
+                                <td className="whitespace-nowrap uppercase">{user.role || 'user'}</td>
+                                <td className="whitespace-nowrap text-right">
+                                    <div className="flex flex-wrap justify-end gap-2">
+                                        <Link
+                                            href={`/dashbaord/users/${user.id}`}
+                                            className="btn btn-xs border-neutral bg-white text-neutral hover:bg-neutral hover:text-white"
+                                        >
+                                            View
+                                        </Link>
+                                        <Link
+                                            href={`/dashbaord/users/${user.id}/edit`}
+                                            className="btn btn-xs border-sky-400 bg-sky-400 text-white hover:border-sky-500 hover:bg-sky-500"
+                                        >
+                                            Edit
+                                        </Link>
+                                        <button
+                                            type="button"
+                                            className="btn btn-xs border-pink-500 bg-pink-500 text-white hover:border-pink-600 hover:bg-pink-600"
+                                            onClick={() => onDeleteUser(user)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))
+                    )}
+                </tbody>
+            </table>
+        </div>
+    );
+}
 
 function UsersPage() {
     const userRole = useMemo(() => localStorage.getItem('role') || 'user', []);
@@ -12,18 +156,16 @@ function UsersPage() {
             role: params.get('role') || 'all',
         };
     }, []);
+
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
-    const [message, setMessage] = useState(
-        initialFilters.updated ? 'User updated successfully.' : '',
-    );
+    const [message, setMessage] = useState(initialFilters.updated ? 'User updated successfully.' : '');
     const [searchValue, setSearchValue] = useState(initialFilters.search);
     const [activeSearch, setActiveSearch] = useState(initialFilters.search);
     const [roleValue, setRoleValue] = useState(initialFilters.role);
     const [activeRole, setActiveRole] = useState(initialFilters.role);
     const didMountFilters = useRef(false);
-    const roleOptions = ['all', 'user', 'admin', 'superadmin'];
 
     const getErrorMessage = (payload, fallbackMessage) => {
         if (payload?.message) {
@@ -148,7 +290,7 @@ function UsersPage() {
         params.delete('updated');
 
         const query = params.toString();
-        const nextUrl = query ? `/users?${query}` : '/users';
+        const nextUrl = query ? `/dashbaord/users?${query}` : '/dashbaord/users';
         window.history.replaceState({}, '', nextUrl);
     };
 
@@ -169,7 +311,7 @@ function UsersPage() {
         }, 300);
 
         return () => window.clearTimeout(timeoutId);
-    }, [roleValue, searchValue]);
+    }, [searchValue, roleValue]);
 
     const onDeleteUser = async (user) => {
         const ok = window.confirm(`Delete ${user.name}?`);
@@ -195,104 +337,31 @@ function UsersPage() {
         }
     };
 
+    const onResetFilters = () => {
+        setSearchValue('');
+        setRoleValue('all');
+    };
+
     return (
         <div className="mx-auto max-w-7xl space-y-6">
-            <section className="card bg-base-100 shadow-xl">
-                <div className="card-body">
-                    <div className="flex items-center justify-between gap-3">
-                        <div>
-                            <h1 className="text-3xl font-extrabold">Users</h1>
-                            <p className="mt-2 text-sm text-base-content/70">
-                                Manage your platform users here. Signed in as:{' '}
-                                <span className="font-semibold uppercase">{userRole}</span>
-                            </p>
-                        </div>
-                        <Link href="/users/create" className="btn btn-success">
-                            Add User
-                        </Link>
-                    </div>
-                </div>
-            </section>
+            <UsersPageHeader userRole={userRole} />
 
             <section className="card bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-                        <h2 className="text-xl font-bold">User List</h2>
-                        <div className="flex items-center gap-2">
-                            <input
-                                type="search"
-                                className="input input-bordered input-sm w-72"
-                                placeholder="Search by user name or email"
-                                value={searchValue}
-                                onChange={(event) => setSearchValue(event.target.value)}
-                            />
-                            <select
-                                className="select select-bordered select-sm"
-                                value={roleValue}
-                                onChange={(event) => setRoleValue(event.target.value)}
-                            >
-                                {roleOptions.map((role) => (
-                                    <option key={role} value={role}>
-                                        {role === 'all' ? 'All roles' : role.toUpperCase()}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                    </div>
+                    {message ? <div className="alert alert-success py-2 text-sm">{message}</div> : null}
+                    {isLoading ? <UsersPageLoading /> : null}
+                    <UsersPageError message={error} />
 
-                    {message ? <div className="alert alert-success mb-3 py-2 text-sm">{message}</div> : null}
-                    {isLoading ? <p className="text-sm text-base-content/70">Loading users...</p> : null}
-                    {error ? <div className="alert alert-error mb-3 py-2 text-sm">{error}</div> : null}
+                    <UsersFilterSection
+                        searchValue={searchValue}
+                        roleValue={roleValue}
+                        onSearchChange={(event) => setSearchValue(event.target.value)}
+                        onRoleChange={(event) => setRoleValue(event.target.value)}
+                        onReset={onResetFilters}
+                    />
 
                     {!isLoading && !error ? (
-                        <div className="overflow-x-auto rounded-box border border-base-300">
-                            <table className="table table-zebra">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {users.length === 0 ? (
-                                        <tr>
-                                            <td colSpan={5} className="text-center text-base-content/70">
-                                                No users found.
-                                            </td>
-                                        </tr>
-                                    ) : (
-                                        users.map((user) => (
-                                            <tr key={user.id}>
-                                                <td>{user.id}</td>
-                                                <td>{user.name}</td>
-                                                <td>{user.email}</td>
-                                                <td className="uppercase">{user.role || 'user'}</td>
-                                                <td>
-                                                    <div className="flex flex-wrap gap-2">
-                                                        <Link href={`/users/${user.id}`} className="btn btn-xs btn-outline">
-                                                            Show
-                                                        </Link>
-                                                        <Link href={`/users/${user.id}/edit`} className="btn btn-xs btn-info btn-outline">
-                                                            Edit
-                                                        </Link>
-                                                        <button
-                                                            type="button"
-                                                            className="btn btn-xs btn-error btn-outline"
-                                                            onClick={() => onDeleteUser(user)}
-                                                        >
-                                                            Delete
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        ))
-                                    )}
-                                </tbody>
-                            </table>
-                        </div>
+                        <UsersListSection users={users} onDeleteUser={onDeleteUser} />
                     ) : null}
                 </div>
             </section>
