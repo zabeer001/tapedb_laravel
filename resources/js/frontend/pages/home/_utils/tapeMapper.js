@@ -8,6 +8,15 @@ function hasValue(value) {
   return value !== null && value !== undefined && value.toString().trim() !== "";
 }
 
+function toBooleanFlag(value) {
+  if (!hasValue(value)) {
+    return false;
+  }
+
+  const normalized = value.toString().trim().toLowerCase();
+  return ["1", "true", "yes", "y"].includes(normalized);
+}
+
 function buildImagePath(path) {
   if (!hasValue(path)) {
     return null;
@@ -33,9 +42,11 @@ export function mapTapeToRow(tape) {
     guardColor: toDisplayText(tape.guard_color),
     upc: toDisplayText(tape.upc),
     etching: toDisplayText(tape.etching),
-    qa: hasValue(tape.qa_checked),
+    qa: toBooleanFlag(tape.qa_checked),
     qaLabel: toDisplayText(tape.qa_checked),
-    firstPrint: hasValue(tape.first_printer),
+    firstPrint: toBooleanFlag(tape.first_printer),
     firstPrintLabel: toDisplayText(tape.first_printer),
+    screener: toBooleanFlag(tape.screener),
+    screenerLabel: toDisplayText(tape.screener),
   };
 }

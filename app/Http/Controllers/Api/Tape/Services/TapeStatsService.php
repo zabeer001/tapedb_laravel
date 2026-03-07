@@ -6,12 +6,10 @@ use App\Models\Tape;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class TapeIndexService
+class TapeStatsService
 {
-    public function handle(Request $request): JsonResponse
+    private function applyCommonFilters(Request $request, $query): void
     {
-        $query = Tape::query();
-
         if ($request->filled('search')) {
             $search = (string) $request->input('search');
 
@@ -27,10 +25,6 @@ class TapeIndexService
             });
         }
 
-        if ($request->filled('qa_checked')) {
-            $query->where('qa_checked', (string) $request->input('qa_checked'));
-        }
-
         if ($request->filled('screener')) {
             $query->where('screener', (string) $request->input('screener'));
         }
@@ -42,17 +36,28 @@ class TapeIndexService
         if ($request->filled('year')) {
             $query->where('year', (string) $request->input('year'));
         }
+    }
 
-        $query
-            ->orderByRaw("COALESCE(NULLIF(title, ''), NULLIF(name, ''), '') ASC")
-            ->orderBy('year', 'ASC')
-            ->orderBy('id', 'ASC');
+    public function handle(Request $request): JsonResponse
+    {
+        $query = Tape::query();
+        $this->applyCommonFilters($request, $query);
 
-        $perPage = min(100, max(1, (int) $request->input('per_page', 50)));
+        $total = (clone $query)->count();
+        $qaTotal = (clone $query)->where('qa_checked', '1')->count();
+        $nonQaTotal = max(0, $total - $qaTotal);
+        $screenerTotal = (clone $query)->whereRaw("LOWER(TRIM(screener)) IN ('1','true','yes','y')")->count();
+        $firstPrinterTotal = (clone $query)->whereRaw("LOWER(TRIM(first_printer)) IN ('1','true','yes','y')")->count();
 
         return response()->json([
             'status' => 'success',
-            'data' => $query->paginate($perPage),
+            'data' => [
+                'total' => $total,
+                'qa_total' => $qaTotal,
+                'non_qa_total' => $nonQaTotal,
+                'screener_total' => $screenerTotal,
+                'first_printer_total' => $firstPrinterTotal,
+            ],
         ]);
     }
 }

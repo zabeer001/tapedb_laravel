@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PosterCell({ src, title }) {
+export default function PosterCell({ src, title, firstPrint, screener }) {
   return (
     <div className="flex items-center gap-3">
       <div className="avatar">
@@ -16,7 +16,18 @@ export default function PosterCell({ src, title }) {
       </div>
       <div className="min-w-0">
         <div className="font-semibold truncate">{title}</div>
-        <div className="text-xs text-base-content/60 truncate">Tape record</div>
+        <div className="mt-1 flex flex-wrap items-center gap-1">
+          {firstPrint ? (
+            <button type="button" className="btn btn-warning btn-xs h-5 min-h-0 px-2 text-[9px]">
+              FIRST PRINT
+            </button>
+          ) : null}
+          {screener ? (
+            <button type="button" className="btn btn-info btn-xs h-5 min-h-0 px-2 text-[9px]">
+              SCREENER
+            </button>
+          ) : null}
+        </div>
       </div>
     </div>
   );

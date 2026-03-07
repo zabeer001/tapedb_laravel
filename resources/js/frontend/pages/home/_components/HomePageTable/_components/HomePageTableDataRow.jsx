@@ -8,28 +8,23 @@ export default function HomePageTableDataRow({ row, onOpenPreview }) {
       <td className="w-14 font-mono text-xs sm:w-20 sm:text-sm">{row.id}</td>
 
       <td className="max-w-[220px]">
-        <div className="flex min-w-0 items-center gap-2 sm:hidden">
-          <div className="h-10 w-10 shrink-0 overflow-hidden rounded-lg ring-1 ring-base-300">
-            {row.poster ? (
-              <img src={row.poster} alt={row.title} className="h-full w-full object-cover" />
-            ) : (
-              <div className="grid h-full w-full place-items-center bg-base-200 text-[10px] text-base-content/50">
-                No Img
-              </div>
-            )}
-          </div>
-          <div className="truncate font-semibold">{row.title}</div>
+        <div className="sm:hidden">
+          <PosterCell
+            src={row.poster}
+            title={row.title}
+            firstPrint={row.firstPrint}
+            screener={row.screener}
+          />
         </div>
 
         <div className="hidden items-center justify-between gap-4 sm:flex">
-          <PosterCell src={row.poster} title={row.title} />
-          <div className="flex flex-col items-end gap-1">
-            {row.firstPrint ? (
-              <span className="badge badge-warning badge-sm">FIRST PRINT</span>
-            ) : (
-              <span className="badge badge-ghost badge-sm">Standard</span>
-            )}
-          </div>
+          <PosterCell
+            src={row.poster}
+            title={row.title}
+            firstPrint={row.firstPrint}
+            screener={row.screener}
+          />
+          
         </div>
       </td>
 
@@ -43,13 +38,13 @@ export default function HomePageTableDataRow({ row, onOpenPreview }) {
       <td className="hidden text-sm 2xl:table-cell">{row.etching}</td>
 
       <td className="hidden sm:table-cell">
-        {row.qa ? <Chip tone="success">{row.qaLabel}</Chip> : <Chip>Pending</Chip>}
+        <Chip tone={row.qa ? "success" : "warning"}>{row.qa ? "QA" : "Not QA"}</Chip>
       </td>
 
       <td className="text-right">
         <button
           type="button"
-          className="btn btn-ghost btn-xs btn-square rounded-xl sm:btn-sm"
+          className="btn btn-ghost bg-info text-info-content btn-xs btn-square rounded-xl sm:btn-sm"
           aria-label="View"
           onClick={() => onOpenPreview(row.id)}
         >

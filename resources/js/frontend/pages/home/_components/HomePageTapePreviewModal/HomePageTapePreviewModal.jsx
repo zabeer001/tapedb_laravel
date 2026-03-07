@@ -1,28 +1,19 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import useHomePageStore from "../../_store/useHomePageStore";
-
-const IMAGE_FIELDS = ["img1", "img2", "img3", "img4", "img5", "img6"];
-
-function toDisplayText(value) {
-  if (value === null || value === undefined) {
-    return "—";
-  }
-
-  const normalized = value.toString().trim();
-  return normalized || "—";
-}
-
-function toImageUrl(path) {
-  if (!path) {
-    return null;
-  }
-  if (path.startsWith("http://") || path.startsWith("https://")) {
-    return path;
-  }
-  return `/storage/${path}`;
-}
+import PreviewHeader from "./_compoennts/PreviewHeader";
+import PreviewImageGallery from "./_compoennts/PreviewImageGallery";
+import PreviewDetailsTable from "./_compoennts/PreviewDetailsTable";
+import PreviewZoomOverlay from "./_compoennts/PreviewZoomOverlay";
+import { PreviewErrorState, PreviewLoadingState } from "./_compoennts/PreviewStatus";
+import {
+  buildImageItems,
+  buildPreviewDetails,
+  getTapeTitle,
+  isTruthyFlag,
+} from "./_compoennts/previewUtils";
 
 export default function HomePageTapePreviewModal() {
+  const [zoomedImageIndex, setZoomedImageIndex] = useState(null);
   const isPreviewOpen = useHomePageStore((state) => state.isPreviewOpen);
   const previewTapeId = useHomePageStore((state) => state.previewTapeId);
   const previewTape = useHomePageStore((state) => state.previewTape);
@@ -31,111 +22,98 @@ export default function HomePageTapePreviewModal() {
   const closeTapePreview = useHomePageStore((state) => state.closeTapePreview);
   const retryTapePreview = useHomePageStore((state) => state.retryTapePreview);
 
+  const handleClosePreview = () => {
+    setZoomedImageIndex(null);
+    closeTapePreview();
+  };
+
+  const tapeTitle = getTapeTitle(previewTape, previewTapeId);
+  const details = useMemo(() => buildPreviewDetails(previewTape), [previewTape]);
+  const imageItems = useMemo(() => buildImageItems(previewTape), [previewTape]);
+  const qaTone = isTruthyFlag(previewTape?.qa_checked) ? "success" : "warning";
+  const qaLabel = isTruthyFlag(previewTape?.qa_checked) ? "QA'd" : "Not QA";
+  const canNavigateZoom = imageItems.length > 1;
+  const zoomedImageSrc =
+    zoomedImageIndex !== null && imageItems[zoomedImageIndex]
+      ? imageItems[zoomedImageIndex].src
+      : null;
+
+  const handlePrevZoom = () => {
+    if (!canNavigateZoom || zoomedImageIndex === null) {
+      return;
+    }
+
+    setZoomedImageIndex((prevIndex) => {
+      if (prevIndex === null) {
+        return prevIndex;
+      }
+      return (prevIndex - 1 + imageItems.length) % imageItems.length;
+    });
+  };
+
+  const handleNextZoom = () => {
+    if (!canNavigateZoom || zoomedImageIndex === null) {
+      return;
+    }
+
+    setZoomedImageIndex((prevIndex) => {
+      if (prevIndex === null) {
+        return prevIndex;
+      }
+      return (prevIndex + 1) % imageItems.length;
+    });
+  };
+
   if (!isPreviewOpen) {
     return null;
   }
 
-  const tapeTitle =
-    previewTape?.title?.trim() || previewTape?.name?.trim() || `Tape #${toDisplayText(previewTapeId)}`;
-
-  const details = previewTape
-    ? [
-        { label: "ID", value: previewTape.id },
-        { label: "Name", value: previewTape.name },
-        { label: "Title", value: previewTape.title },
-        { label: "Year", value: previewTape.year },
-        { label: "Distributor", value: previewTape.distributor },
-        { label: "Seal", value: previewTape.seal },
-        { label: "Sticker", value: previewTape.sticker },
-        { label: "Watermarks", value: previewTape.watermarks },
-        { label: "Guard Color", value: previewTape.guard_color },
-        { label: "UPC", value: previewTape.upc },
-        { label: "Etching", value: previewTape.etching },
-        { label: "QA Checked", value: previewTape.qa_checked },
-        { label: "First Printer", value: previewTape.first_printer },
-        { label: "Notes", value: previewTape.notes },
-      ]
-    : [];
-
   return (
-    <div className="modal modal-open" role="dialog" aria-modal="true">
-      <div className="modal-box max-w-5xl p-0">
-        <div className="flex items-center justify-between border-b border-base-300 px-5 py-4">
-          <h3 className="text-lg font-bold">{tapeTitle}</h3>
-          <button
-            type="button"
-            className="btn btn-sm btn-circle btn-ghost"
-            aria-label="Close"
-            onClick={closeTapePreview}
-          >
-            ✕
-          </button>
-        </div>
+    <>
+      <button
+        type="button"
+        className="fixed inset-0 z-[200] bg-base-300/45 backdrop-blur-sm"
+        onClick={handleClosePreview}
+        aria-label="Close preview"
+      />
 
-        <div className="max-h-[75vh] overflow-y-auto p-5">
-          {previewLoading ? (
-            <div className="flex items-center gap-3 py-8">
-              <span className="loading loading-spinner loading-md"></span>
-              <span className="text-sm text-base-content/70">Loading tape details...</span>
-            </div>
-          ) : null}
+      <div className="fixed inset-0 z-[210] overflow-y-auto p-3 sm:p-6" role="dialog" aria-modal="true">
+        <div className="mx-auto w-full max-w-6xl rounded-[1.75rem] border border-base-300 bg-base-100 shadow-2xl">
+          <PreviewHeader
+            tapeTitle={tapeTitle}
+            previewTapeId={previewTapeId}
+            onClose={handleClosePreview}
+          />
 
-          {!previewLoading && previewError ? (
-            <div className="space-y-3 py-3">
-              <p className="text-sm text-error">{previewError}</p>
-              <button type="button" className="btn btn-sm" onClick={retryTapePreview}>
-                Retry
-              </button>
-            </div>
-          ) : null}
+          <div className="max-h-[80vh] overflow-y-auto p-4 sm:p-6">
+            {previewLoading ? <PreviewLoadingState /> : null}
 
-          {!previewLoading && !previewError && previewTape ? (
-            <div className="space-y-5">
-              <div className="rounded-box border border-base-300 bg-base-200 p-4">
-                <dl className="grid gap-3 md:grid-cols-2">
-                  {details.map((detail) => (
-                    <div key={detail.label}>
-                      <dt className="text-xs uppercase text-base-content/60">{detail.label}</dt>
-                      <dd className="text-sm font-medium">{toDisplayText(detail.value)}</dd>
-                    </div>
-                  ))}
-                </dl>
+            {!previewLoading && previewError ? (
+              <PreviewErrorState error={previewError} onRetry={retryTapePreview} />
+            ) : null}
+
+            {!previewLoading && !previewError && previewTape ? (
+              <div className="space-y-6">
+                <PreviewImageGallery
+                  imageItems={imageItems}
+                  onImageClick={(index) => setZoomedImageIndex(index)}
+                />
+                <PreviewDetailsTable details={details} qaTone={qaTone} qaLabel={qaLabel} />
               </div>
-
-              <div>
-                <h4 className="mb-3 text-sm font-semibold">Images</h4>
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {IMAGE_FIELDS.map((field) => {
-                    const imageUrl = toImageUrl(previewTape[field]);
-
-                    if (!imageUrl) {
-                      return (
-                        <div
-                          key={field}
-                          className="rounded-box border border-dashed border-base-300 p-6 text-center text-xs text-base-content/60"
-                        >
-                          {field} not uploaded
-                        </div>
-                      );
-                    }
-
-                    return (
-                      <img
-                        key={field}
-                        src={imageUrl}
-                        alt={field}
-                        className="h-40 w-full rounded-box border border-base-300 object-cover"
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          ) : null}
+            ) : null}
+          </div>
         </div>
       </div>
 
-      <button type="button" className="modal-backdrop" onClick={closeTapePreview} aria-label="Close" />
-    </div>
+      <PreviewZoomOverlay
+        imageSrc={zoomedImageSrc}
+        onClose={() => setZoomedImageIndex(null)}
+        onPrev={handlePrevZoom}
+        onNext={handleNextZoom}
+        canNavigate={canNavigateZoom}
+        currentIndex={zoomedImageIndex}
+        totalCount={imageItems.length}
+      />
+    </>
   );
 }

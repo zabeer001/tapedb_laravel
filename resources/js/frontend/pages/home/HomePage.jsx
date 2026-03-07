@@ -7,10 +7,12 @@ import useHomePageStore from "./_store/useHomePageStore";
 
 export default function TapeDBDaisyLayout() {
   const loadTapes = useHomePageStore((state) => state.loadTapes);
+  const loadStats = useHomePageStore((state) => state.loadStats);
 
   useEffect(() => {
+    loadStats();
     loadTapes();
-  }, [loadTapes]);
+  }, [loadStats, loadTapes]);
 
   return (
     <div className="min-h-screen">

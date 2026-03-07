@@ -2,8 +2,10 @@ import React from "react";
 import useHomePageStore from "../_store/useHomePageStore";
 
 export default function HomePageHeader() {
-  const rows = useHomePageStore((state) => state.rows);
   const loading = useHomePageStore((state) => state.loading);
+  const totalCount = useHomePageStore((state) => state.totalCount);
+  const screenerTotalCount = useHomePageStore((state) => state.screenerTotalCount);
+  const firstPrinterTotalCount = useHomePageStore((state) => state.firstPrinterTotalCount);
 
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
@@ -18,19 +20,15 @@ export default function HomePageHeader() {
         <div className="stats shadow bg-base-100">
           <div className="stat py-3">
             <div className="stat-title text-xs">Total</div>
-            <div className="stat-value text-xl">{loading ? "..." : rows.length}</div>
+            <div className="stat-value text-xl">{loading ? "..." : totalCount}</div>
           </div>
           <div className="stat py-3">
-            <div className="stat-title text-xs">QA'd</div>
-            <div className="stat-value text-xl">
-              {loading ? "..." : rows.filter((r) => r.qa).length}
-            </div>
+            <div className="stat-title text-xs">Screener</div>
+            <div className="stat-value text-xl">{loading ? "..." : screenerTotalCount}</div>
           </div>
           <div className="stat py-3">
             <div className="stat-title text-xs">First Print</div>
-            <div className="stat-value text-xl">
-              {loading ? "..." : rows.filter((r) => r.firstPrint).length}
-            </div>
+            <div className="stat-value text-xl">{loading ? "..." : firstPrinterTotalCount}</div>
           </div>
         </div>
       </div>

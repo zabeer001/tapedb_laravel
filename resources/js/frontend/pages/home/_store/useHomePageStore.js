@@ -9,6 +9,7 @@ const LOAD_MODE_REPLACE = "replace";
 const LOAD_MODE_APPEND = "append";
 const LOAD_MODE_PREPEND = "prepend";
 let activeRequestId = 0;
+let activeStatsRequestId = 0;
 
 function buildTapesUrl(page, query, qaFilter) {
   const params = new URLSearchParams();
@@ -27,6 +28,18 @@ function buildTapesUrl(page, query, qaFilter) {
   }
 
   return `/api/tapes?${params.toString()}`;
+}
+
+function buildTapeStatsUrl(query) {
+  const params = new URLSearchParams();
+  const trimmedQuery = query.trim();
+
+  if (trimmedQuery) {
+    params.set("search", trimmedQuery);
+  }
+
+  const queryString = params.toString();
+  return queryString ? `/api/tapes/stats?${queryString}` : "/api/tapes/stats";
 }
 
 function toPositiveInteger(value, fallback) {
@@ -83,6 +96,10 @@ const useHomePageStore = create((set, get) => ({
   page: 1,
   totalPages: 1,
   totalCount: 0,
+  qaTotalCount: 0,
+  nonQaTotalCount: 0,
+  screenerTotalCount: 0,
+  firstPrinterTotalCount: 0,
   hasNextPage: false,
   hasPrevPage: false,
   isPreviewOpen: false,
@@ -161,6 +178,37 @@ const useHomePageStore = create((set, get) => ({
     }
   },
 
+  loadStats: async () => {
+    const requestId = ++activeStatsRequestId;
+    const { query } = get();
+
+    try {
+      const payload = await apiRequest(buildTapeStatsUrl(query));
+      if (requestId !== activeStatsRequestId) {
+        return;
+      }
+
+      const stats = payload?.data || {};
+      const total = Number(stats?.total);
+      const qaTotal = Number(stats?.qa_total);
+      const nonQaTotal = Number(stats?.non_qa_total);
+      const screenerTotal = Number(stats?.screener_total);
+      const firstPrinterTotal = Number(stats?.first_printer_total);
+
+      set({
+        totalCount: Number.isFinite(total) ? total : 0,
+        qaTotalCount: Number.isFinite(qaTotal) ? qaTotal : 0,
+        nonQaTotalCount: Number.isFinite(nonQaTotal) ? nonQaTotal : 0,
+        screenerTotalCount: Number.isFinite(screenerTotal) ? screenerTotal : 0,
+        firstPrinterTotalCount: Number.isFinite(firstPrinterTotal) ? firstPrinterTotal : 0,
+      });
+    } catch (_err) {
+      if (requestId !== activeStatsRequestId) {
+        return;
+      }
+    }
+  },
+
   loadNextPage: async () => {
     const { loading, hasNextPage, totalPages, loadedPages, page } = get();
     if (loading || !hasNextPage) {
@@ -195,21 +243,25 @@ const useHomePageStore = create((set, get) => ({
 
   setQuery: (query) => {
     set({ query });
+    get().loadStats();
     get().loadTapes(1);
   },
 
   clearQuery: () => {
     set({ query: "" });
+    get().loadStats();
     get().loadTapes(1);
   },
 
   setQaFilter: (qaFilter) => {
     set({ qaFilter });
+    get().loadStats();
     get().loadTapes(1);
   },
 
   resetFilters: () => {
     set({ query: "", qaFilter: QA_FILTER_ALL });
+    get().loadStats();
     get().loadTapes(1);
   },
 
