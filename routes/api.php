@@ -20,6 +20,8 @@ Route::apiResource('employees', EmployeeController::class);
 Route::get('tapes/stats', [TapeController::class, 'stats']);
 Route::apiResource('tapes', TapeController::class);
 Route::get('reports/stats', [ReportController::class, 'stats']);
+Route::post('next-tape', [TapeController::class, 'nextTape']);
+Route::post('previous-tape', [TapeController::class, 'previousTape']);
 
 Route::prefix('profile')->middleware('auth:api')->group(function (): void {
     Route::get('/', [ProfileController::class, 'show']);

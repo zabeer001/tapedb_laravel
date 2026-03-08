@@ -319,6 +319,12 @@ const useHomePageStore = create((set, get) => ({
     }
     get().openTapePreview(tapeId);
   },
+
+  setPreviewError: (previewError) =>
+    set({
+      previewError,
+      previewLoading: false,
+    }),
 }));
 
 export default useHomePageStore;

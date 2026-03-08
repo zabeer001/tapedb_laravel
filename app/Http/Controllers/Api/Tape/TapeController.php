@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\Tape;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\Tape\Services\TapeDeleteService;
 use App\Http\Controllers\Api\Tape\Services\TapeIndexService;
+use App\Http\Controllers\Api\Tape\Services\TapeNextService;
+use App\Http\Controllers\Api\Tape\Services\TapePreviousService;
 use App\Http\Controllers\Api\Tape\Services\TapeShowService;
 use App\Http\Controllers\Api\Tape\Services\TapeStatsService;
 use App\Http\Controllers\Api\Tape\Services\TapeStoreService;
@@ -17,7 +19,7 @@ class TapeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:api', 'role:admin,superadmin'])->except(['index','show', 'stats']);
+        $this->middleware(['auth:api', 'role:admin,superadmin'])->except(['index', 'show', 'stats','nextTape', 'previousTape']);
     }
 
     public function index(Request $request, TapeIndexService $service): JsonResponse
@@ -48,5 +50,15 @@ class TapeController extends Controller
     public function destroy(Tape $tape, TapeDeleteService $service): JsonResponse
     {
         return $service->handle($tape);
+    }
+
+    public function nextTape(Request $request, TapeNextService $service): JsonResponse
+    {
+        return $service->handle($request);
+    }
+    
+    public function previousTape(Request $request, TapePreviousService $service): JsonResponse
+    {
+        return $service->handle($request);
     }
 }
