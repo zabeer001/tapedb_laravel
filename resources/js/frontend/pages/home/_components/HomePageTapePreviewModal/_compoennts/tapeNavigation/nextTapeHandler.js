@@ -14,7 +14,7 @@ export async function handleNextTape({ previewTapeId, setPreviewError, openTapeP
             return;
         }
 
-        await openTapePreview(nextTapeId);
+        await openTapePreview(nextTapeId, { keepExistingData: true });
     } catch (error) {
         setPreviewError(error?.message || "Failed to load next tape.");
     }

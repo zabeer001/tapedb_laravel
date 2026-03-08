@@ -32,6 +32,7 @@ export default function HomePageTapePreviewModal() {
   const imageItems = useMemo(() => buildImageItems(previewTape), [previewTape]);
   const qaTone = isTruthyFlag(previewTape?.qa_checked) ? "success" : "warning";
   const qaLabel = isTruthyFlag(previewTape?.qa_checked) ? "QA'd" : "Not QA";
+  const hasPreviewData = Boolean(previewTape);
   const canNavigateZoom = imageItems.length > 1;
   const zoomedImageSrc =
     zoomedImageIndex !== null && imageItems[zoomedImageIndex]
@@ -86,13 +87,13 @@ export default function HomePageTapePreviewModal() {
           />
 
           <div className="max-h-[80vh] overflow-y-auto p-4 sm:p-6">
-            {previewLoading ? <PreviewLoadingState /> : null}
+            {previewLoading && !hasPreviewData ? <PreviewLoadingState /> : null}
 
-            {!previewLoading && previewError ? (
+            {!hasPreviewData && previewError ? (
               <PreviewErrorState error={previewError} onRetry={retryTapePreview} />
             ) : null}
 
-            {!previewLoading && !previewError && previewTape ? (
+            {hasPreviewData ? (
               <div className="space-y-6">
                 <PreviewImageGallery
                   imageItems={imageItems}

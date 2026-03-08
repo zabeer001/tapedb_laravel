@@ -265,15 +265,18 @@ const useHomePageStore = create((set, get) => ({
     get().loadTapes(1);
   },
 
-  openTapePreview: async (tapeId) => {
+  openTapePreview: async (tapeId, options = {}) => {
     if (tapeId === null || tapeId === undefined) {
       return;
     }
 
+    const keepExistingData = Boolean(options?.keepExistingData);
+    const previousPreviewTape = keepExistingData ? get().previewTape : null;
+
     set({
       isPreviewOpen: true,
       previewTapeId: tapeId,
-      previewTape: null,
+      previewTape: previousPreviewTape,
       previewLoading: true,
       previewError: "",
     });
@@ -296,7 +299,7 @@ const useHomePageStore = create((set, get) => ({
       }
 
       set({
-        previewTape: null,
+        previewTape: previousPreviewTape,
         previewLoading: false,
         previewError: err?.message || "Failed to load tape details.",
       });
