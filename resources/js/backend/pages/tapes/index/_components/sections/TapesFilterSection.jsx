@@ -8,7 +8,7 @@ const SORT_OPTIONS = [
 ];
 
 const QA_OPTIONS = [
-    { value: '', label: 'All QA' },
+    { value: '', label: 'All' },
     { value: 'Yes', label: 'QA: Yes' },
     { value: 'No', label: 'QA: No' },
 ];

@@ -9,8 +9,8 @@ export default function HomePageFilters() {
   const setQaFilter = useHomePageStore((state) => state.setQaFilter);
 
   return (
-    <div className="mt-5 card bg-base-100 shadow border border-base-300">
-      <div className="card-body p-4 sm:p-5">
+    <div className="relative z-20 mt-5 card overflow-visible bg-base-100 shadow border border-base-300">
+      <div className="card-body overflow-visible p-4 sm:p-5">
         <div className="flex flex-col lg:flex-row gap-3 lg:items-center lg:justify-between">
           <div className="flex-1">
             <label className="input input-bordered w-full flex items-center gap-2 rounded-2xl">
@@ -47,13 +47,13 @@ export default function HomePageFilters() {
             </label>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-2 sm:items-center">
+          <div className="relative z-30 flex flex-col sm:flex-row gap-2 sm:items-center">
             <select
-              className="select select-bordered rounded-2xl"
+              className="select select-bordered rounded-2xl w-full min-w-[10rem] sm:w-auto"
               value={qaFilter}
               onChange={(e) => setQaFilter(e.target.value)}
             >
-              <option value="ALL">All QA</option>
+              <option value="ALL">All</option>
               <option value="QA">QA'd only</option>
               <option value="NOT_QA">Not QA'd</option>
             </select>
