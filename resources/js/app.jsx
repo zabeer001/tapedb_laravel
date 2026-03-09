@@ -7,7 +7,7 @@ import { createRoot } from 'react-dom/client';
 import FrontendLayout from './frontend/layouts/FrontendLayout';
 import BackendLayout from './backend/layouts/BackendLayout';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = 'TapeDB';
 
 const frontendPages = import.meta.glob('./frontend/pages/**/*.jsx');
 const commonPages = import.meta.glob('./common/**/*.jsx');
