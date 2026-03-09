@@ -17,6 +17,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware(['auth:api', 'role:admin,superadmin']);
+        $this->middleware('throttle:20,1');
     }
 
     /**

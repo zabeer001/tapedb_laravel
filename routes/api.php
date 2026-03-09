@@ -28,8 +28,3 @@ Route::prefix('profile')->middleware('auth:api')->group(function (): void {
     Route::post('/password', [ProfileController::class, 'updatePassword']);
     Route::post('/avatar', [ProfileController::class, 'updateAvatar']);
 });
-
-Route::prefix('google-meet')->group(function (): void {
-    Route::get('auth-url', [GoogleMeetController::class, 'authUrl']);
-    Route::get('callback', [GoogleMeetController::class, 'callback']);
-});

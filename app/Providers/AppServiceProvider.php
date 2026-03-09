@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Controllers\Api\Tape\Interfaces\AuthenticatedUserResolverInterface;
-use App\Http\Controllers\Api\Tape\Shared\Utils\TapeAuthenticatedUserResolver;
+use App\Http\Controllers\Api\Tape\Services\Shared\Utils\TapeAuthenticatedUserResolver;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 

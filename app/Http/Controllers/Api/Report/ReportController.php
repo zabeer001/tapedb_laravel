@@ -11,7 +11,12 @@ class ReportController extends Controller
 {
     use ApiResponse;
 
-   
+    public function __construct()
+    {
+
+        $this->middleware('throttle:20,1');
+    }
+
     public function stats(ReportStatsService $service): JsonResponse
     {
         return $this->successResponse(

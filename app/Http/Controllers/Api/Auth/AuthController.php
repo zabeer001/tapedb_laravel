@@ -14,6 +14,7 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api')->only(['refresh', 'signout']);
+        $this->middleware('throttle:20,1');
     }
 
     //sign in 

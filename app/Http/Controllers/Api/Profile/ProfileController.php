@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Profile;
 
 use App\Http\Controllers\Api\Concerns\ApiResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Filesystem\FilesystemAdapter;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class ProfileController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->middleware('throttle:20,1');
     }
 
     public function show(Request $request): JsonResponse
@@ -82,13 +84,16 @@ class ProfileController extends Controller
      */
     private function mapUser(User $user): array
     {
+        /** @var FilesystemAdapter $publicDisk */
+        $publicDisk = Storage::disk('public');
+
         return [
             'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
             'role' => $user->role,
             'avatar_path' => $user->avatar_path,
-            'avatar_url' => $user->avatar_path ? Storage::disk('public')->url($user->avatar_path) : null,
+            'avatar_url' => $user->avatar_path ? $publicDisk->url($user->avatar_path) : null,
         ];
     }
 }
