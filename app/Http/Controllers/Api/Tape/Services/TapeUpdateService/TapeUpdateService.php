@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api\Tape\Services\TapeUpdateService;
 
+use App\Http\Controllers\Api\Tape\Interfaces\AuthenticatedUserResolverInterface;
 use App\Models\Tape;
-use App\Http\Controllers\Api\Tape\Services\TapeUpdateService\utils\TapeUpdateAuthenticatedUserResolver;
 use App\Http\Controllers\Api\Tape\Services\TapeUpdateService\utils\TapeUpdateImageOperator;
 use App\Http\Controllers\Api\Tape\Services\TapeUpdateService\utils\TapeUpdateValidationRules;
 use Illuminate\Http\JsonResponse;
@@ -13,7 +13,7 @@ class TapeUpdateService
 {
     public function __construct(
         private readonly TapeUpdateValidationRules $validationRules,
-        private readonly TapeUpdateAuthenticatedUserResolver $authenticatedUserResolver,
+        private readonly AuthenticatedUserResolverInterface $authenticatedUserResolver,
         private readonly TapeUpdateImageOperator $imageOperator
     ) {}
 

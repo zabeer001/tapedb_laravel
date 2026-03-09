@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Api\Tape\Interfaces\AuthenticatedUserResolverInterface;
+use App\Http\Controllers\Api\Tape\Shared\Utils\TapeAuthenticatedUserResolver;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
@@ -12,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(
+            AuthenticatedUserResolverInterface::class,
+            TapeAuthenticatedUserResolver::class
+        );
     }
 
     /**

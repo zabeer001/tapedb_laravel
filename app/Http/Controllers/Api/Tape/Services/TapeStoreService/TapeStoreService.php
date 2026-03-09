@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api\Tape\Services\TapeStoreService;
 
+use App\Http\Controllers\Api\Tape\Interfaces\AuthenticatedUserResolverInterface;
 use App\Models\Tape;
-use App\Http\Controllers\Api\Tape\Services\TapeStoreService\utils\TapeStoreAuthenticatedUserResolver;
 use App\Http\Controllers\Api\Tape\Services\TapeStoreService\utils\TapeStoreImageUploader;
 use App\Http\Controllers\Api\Tape\Services\TapeStoreService\utils\TapeStoreValidationRules;
 use Illuminate\Http\JsonResponse;
@@ -13,7 +13,7 @@ class TapeStoreService
 {
     public function __construct(
         private readonly TapeStoreValidationRules $validationRules,
-        private readonly TapeStoreAuthenticatedUserResolver $authenticatedUserResolver,
+        private readonly AuthenticatedUserResolverInterface $authenticatedUserResolver,
         private readonly TapeStoreImageUploader $imageUploader
     ) {}
 

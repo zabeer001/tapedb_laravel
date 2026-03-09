@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api\Tape\Services\TapeStoreService\utils;
+namespace App\Http\Controllers\Api\Tape\Shared\Utils;
 
+use App\Http\Controllers\Api\Tape\Interfaces\AuthenticatedUserResolverInterface;
 use Illuminate\Http\Request;
 
-class TapeStoreAuthenticatedUserResolver
+class TapeAuthenticatedUserResolver implements AuthenticatedUserResolverInterface
 {
     public function resolve(Request $request): int
     {
