@@ -1,15 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api\Tape\Services;
+namespace App\Http\Controllers\Api\Tape\Services\TapeStoreService\utils;
 
-use App\Models\Tape;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-
-class TapeStoreService
+class TapeStoreValidationRules
 {
-    private function validationRules(): array
+    public function rules(): array
     {
         return [
             'name' => 'nullable|string|max:191',
@@ -35,25 +30,5 @@ class TapeStoreService
             'img6' => 'nullable|image|mimes:jpg,jpeg,png,webp,gif',
             'approved' => 'sometimes|boolean',
         ];
-    }
-
-    public function handle(Request $request): JsonResponse
-    {
-        $validated = $request->validate($this->validationRules());
-        $validated['user_id'] = (int) ($request->user()?->id ?? auth('api')->id());
-
-        foreach (['img1', 'img2', 'img3', 'img4', 'img5', 'img6'] as $field) {
-            if ($request->hasFile($field)) {
-                $validated[$field] = $request->file($field)->store('tapes', 'public');
-            }
-        }
-
-        $tape = Tape::create($validated);
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Tape created successfully.',
-            'data' => $tape,
-        ], 201);
     }
 }

@@ -4,7 +4,6 @@ import { createTape } from '../../api/tapeApi';
 export const CREATE_IMAGE_FIELDS = ['img1', 'img2', 'img3', 'img4', 'img5', 'img6'];
 
 const createEmptyForm = {
-    user_id: '',
     name: '',
     title: '',
     year: '',
@@ -15,9 +14,9 @@ const createEmptyForm = {
     watermarks: '',
     etching: '',
     notes: '',
-    qa_checked: '',
-    screener: '',
-    first_printer: '',
+    qa_checked: 0,
+    screener: 0,
+    first_printer: 0,
     guard_color: '',
     upc: '',
     approved: false,

@@ -2,9 +2,9 @@ import { create } from 'zustand';
 import { fetchTape, updateTape } from '../../api/tapeApi';
 
 export const EDIT_IMAGE_FIELDS = ['img1', 'img2', 'img3', 'img4', 'img5', 'img6'];
+const BINARY_FIELDS = new Set(['qa_checked', 'screener', 'first_printer']);
 
 const EMPTY_FORM = {
-    user_id: '',
     name: '',
     title: '',
     year: '',
@@ -15,9 +15,9 @@ const EMPTY_FORM = {
     watermarks: '',
     etching: '',
     notes: '',
-    qa_checked: '',
-    screener: '',
-    first_printer: '',
+    qa_checked: 0,
+    screener: 0,
+    first_printer: 0,
     guard_color: '',
     upc: '',
     approved: false,
@@ -43,6 +43,10 @@ function withFormField(form, name, value) {
 
 function getStringValue(value) {
     return value === undefined || value === null ? '' : String(value);
+}
+
+function normalizeBinaryFlag(value) {
+    return value === 1 || value === '1' || value === true ? 1 : 0;
 }
 
 function buildPayload(form, files, removeImages) {
@@ -76,13 +80,17 @@ function normalizeTape(tape) {
 
     Object.keys(current).forEach((key) => {
         if (key in tape) {
+            if (BINARY_FIELDS.has(key)) {
+                current[key] = normalizeBinaryFlag(tape[key]);
+                return;
+            }
+
             current[key] = tape[key];
         }
     });
 
     return {
         ...current,
-        user_id: tape.user_id ?? '',
         approved: Boolean(tape.approved),
     };
 }

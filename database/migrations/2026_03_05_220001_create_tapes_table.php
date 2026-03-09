@@ -37,7 +37,6 @@ return new class extends Migration
             $table->string('img6', 255)->nullable();
             $table->boolean('approved')->default(false);
             $table->dateTime('created_at')->useCurrent();
-
             $table->index('user_id', 'user_id_idx');
             $table->index('name', 'name_idx');
             $table->index('year', 'year_idx');

@@ -15,7 +15,7 @@ export default function PosterCell({ src, title, firstPrint, screener }) {
         </div>
       </div>
       <div className="min-w-0">
-        <div className="font-semibold truncate">{title}</div>
+        <div className="font-semibold whitespace-normal break-words leading-snug">{title}</div>
         <div className="mt-1 flex flex-wrap items-center gap-1">
           {firstPrint ? (
             <button type="button" className="btn btn-warning btn-xs h-5 min-h-0 px-2 text-[9px]">

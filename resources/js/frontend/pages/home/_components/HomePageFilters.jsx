@@ -11,8 +11,8 @@ export default function HomePageFilters() {
   return (
     <div className="relative z-20 mt-5 card overflow-visible bg-base-100 shadow border border-base-300">
       <div className="card-body overflow-visible p-4 sm:p-5">
-        <div className="flex flex-col lg:flex-row gap-3 lg:items-center lg:justify-between">
-          <div className="flex-1">
+        <div className="flex flex-nowrap items-center gap-2 lg:gap-3">
+          <div className="flex-1 min-w-0">
             <label className="input input-bordered w-full flex items-center gap-2 rounded-2xl">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -47,9 +47,9 @@ export default function HomePageFilters() {
             </label>
           </div>
 
-          <div className="relative z-30 flex flex-col sm:flex-row gap-2 sm:items-center">
+          <div className="relative z-30 flex shrink-0 items-center">
             <select
-              className="select select-bordered rounded-2xl w-full min-w-[10rem] sm:w-auto"
+              className="select select-sm sm:select-md select-bordered rounded-2xl w-24 sm:w-26 min-w-0"
               value={qaFilter}
               onChange={(e) => setQaFilter(e.target.value)}
             >

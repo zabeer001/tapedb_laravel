@@ -28,14 +28,44 @@ export default function HomePageTableDataRow({ row, onOpenPreview }) {
         </div>
       </td>
 
-      <td className="hidden text-sm font-semibold sm:table-cell">{row.year}</td>
-      <td className="hidden text-sm md:table-cell">{row.distributor}</td>
-      <td className="hidden text-sm lg:table-cell">{row.seal}</td>
-      <td className="hidden text-sm xl:table-cell">{row.sticker}</td>
-      <td className="hidden text-sm xl:table-cell">{row.waterMarks}</td>
-      <td className="hidden text-sm xl:table-cell">{row.guardColor}</td>
-      <td className="hidden text-sm 2xl:table-cell">{row.upc}</td>
-      <td className="hidden text-sm 2xl:table-cell">{row.etching}</td>
+      <td className="hidden w-16 max-w-16 text-sm font-semibold align-top sm:table-cell">
+        <div className="whitespace-normal break-words leading-snug">{row.year}</div>
+      </td>
+      <td className="hidden w-[11rem] max-w-[11rem] text-sm align-top md:table-cell">
+        <div className="max-w-[11rem] whitespace-normal break-words leading-snug">
+          {row.distributor}
+        </div>
+      </td>
+      <td className="hidden w-[11rem] max-w-[11rem] text-sm align-top lg:table-cell">
+        <div className="max-w-[11rem] whitespace-normal break-words leading-snug">
+          {row.seal}
+        </div>
+      </td>
+      <td className="hidden w-[11rem] max-w-[11rem] text-sm align-top xl:table-cell">
+        <div className="max-w-[11rem] whitespace-normal break-words leading-snug">
+          {row.sticker}
+        </div>
+      </td>
+      <td className="hidden w-[11rem] max-w-[11rem] text-sm align-top xl:table-cell">
+        <div className="max-w-[11rem] whitespace-normal break-words leading-snug">
+          {row.waterMarks}
+        </div>
+      </td>
+      <td className="hidden w-[11rem] max-w-[11rem] text-sm align-top xl:table-cell">
+        <div className="max-w-[11rem] whitespace-normal break-words leading-snug">
+          {row.guardColor}
+        </div>
+      </td>
+      <td className="hidden w-[11rem] max-w-[11rem] text-sm align-top 2xl:table-cell">
+        <div className="max-w-[11rem] whitespace-normal break-words leading-snug">
+          {row.upc}
+        </div>
+      </td>
+      <td className="hidden w-[11rem] max-w-[11rem] text-sm align-top 2xl:table-cell">
+        <div className="max-w-[11rem] whitespace-normal break-words leading-snug">
+          {row.etching}
+        </div>
+      </td>
 
       <td className="hidden sm:table-cell">
         <Chip tone={row.qa ? "success" : "warning"}>{row.qa ? "QA" : "Not QA"}</Chip>

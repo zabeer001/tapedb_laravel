@@ -1,43 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api\Tape\Services;
+namespace App\Http\Controllers\Api\Tape\Services\TapeUpdateService\utils;
 
-use App\Models\Tape;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-
-class TapeUpdateService
+class TapeUpdateValidationRules
 {
-    
-
-    public function handle(Request $request, Tape $tape): JsonResponse
-    {
-        $validated = $request->validate($this->validationRules());
-
-        foreach (['img1', 'img2', 'img3', 'img4', 'img5', 'img6'] as $field) {
-            if ($request->hasFile($field)) {
-                if (! empty($tape->$field) && Storage::disk('public')->exists($tape->$field)) {
-                    Storage::disk('public')->delete($tape->$field);
-                }
-
-                $validated[$field] = $request->file($field)->store('tapes', 'public');
-            } elseif (array_key_exists($field, $validated) && is_null($validated[$field])) {
-                if (! empty($tape->$field) && Storage::disk('public')->exists($tape->$field)) {
-                    Storage::disk('public')->delete($tape->$field);
-                }
-            }
-        }
-
-        $tape->update($validated);
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Tape updated successfully.',
-            'data' => $tape->fresh(),
-        ]);
-    }
-    private function validationRules(): array
+    public function rules(): array
     {
         return [
             'name' => 'sometimes|nullable|string|max:191',
