@@ -116,11 +116,17 @@ export async function createTape(formData) {
 }
 
 export async function updateTape(id, formData) {
+    const payload = formData instanceof FormData ? formData : new FormData();
+
+    if (!payload.has('_method')) {
+        payload.append('_method', 'PUT');
+    }
+
     return requestJson(
         `/api/tapes/${id}`,
         {
-            method: 'PUT',
-            body: formData,
+            method: 'POST',
+            body: payload,
         },
         'Failed to update tape.',
     );
