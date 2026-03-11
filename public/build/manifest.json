@@ -1,13 +1,13 @@
 {
-  "_CartesianChart-DqPYOCw3.js": {
-    "file": "assets/CartesianChart-DqPYOCw3.js",
+  "_CartesianChart-_KAg4d_A.js": {
+    "file": "assets/CartesianChart-_KAg4d_A.js",
     "name": "CartesianChart",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_CreateTapePage-Dw5_nQQ2.js": {
-    "file": "assets/CreateTapePage-Dw5_nQQ2.js",
+  "_CreateTapePage-BoRMOYUX.js": {
+    "file": "assets/CreateTapePage-BoRMOYUX.js",
     "name": "CreateTapePage",
     "isDynamicEntry": true,
     "imports": [
@@ -17,16 +17,16 @@
       "resources/js/backend/pages/tapes/create/_components/sections/CreateTapeGeneralSection.jsx",
       "resources/js/backend/pages/tapes/create/_components/sections/CreateTapeAttributesSection.jsx",
       "resources/js/backend/pages/tapes/create/_components/sections/CreateTapeImageSection.jsx",
-      "_useCreateTapeStore-BGEMoicn.js"
+      "_useCreateTapeStore-D9pbXd5Z.js"
     ]
   },
-  "_EditTapePage-F8X1Zre6.js": {
-    "file": "assets/EditTapePage-F8X1Zre6.js",
+  "_EditTapePage-Dd06hdTS.js": {
+    "file": "assets/EditTapePage-Dd06hdTS.js",
     "name": "EditTapePage",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useEditTapeStore-B5rskjma.js",
+      "_useEditTapeStore-DtD3Y4bH.js",
       "resources/js/backend/pages/tapes/edit/_components/layout/EditTapeHeader.jsx",
       "resources/js/backend/pages/tapes/edit/_components/layout/EditTapeLoading.jsx",
       "resources/js/backend/pages/tapes/edit/_components/layout/EditTapeError.jsx",
@@ -35,8 +35,8 @@
       "resources/js/backend/pages/tapes/edit/_components/sections/EditTapeImageSection.jsx"
     ]
   },
-  "_ReportsSummaryCardsSection-BqfdPaSF.js": {
-    "file": "assets/ReportsSummaryCardsSection-BqfdPaSF.js",
+  "_ReportsSummaryCardsSection-Cv8CN4co.js": {
+    "file": "assets/ReportsSummaryCardsSection-Cv8CN4co.js",
     "name": "ReportsSummaryCardsSection",
     "isDynamicEntry": true,
     "imports": [
@@ -44,13 +44,13 @@
       "_reportFormatters-CdOeI7Qo.js"
     ]
   },
-  "_ShowTapePage-CsT27hOh.js": {
-    "file": "assets/ShowTapePage-CsT27hOh.js",
+  "_ShowTapePage-DpnCfvg0.js": {
+    "file": "assets/ShowTapePage-DpnCfvg0.js",
     "name": "ShowTapePage",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useShowTapeStore-arthjXTM.js",
+      "_useShowTapeStore-wIOfpiPh.js",
       "resources/js/backend/pages/tapes/show/_components/layout/ShowTapeHeader.jsx",
       "resources/js/backend/pages/tapes/show/_components/layout/ShowTapeLoading.jsx",
       "resources/js/backend/pages/tapes/show/_components/layout/ShowTapeError.jsx",
@@ -59,13 +59,13 @@
       "resources/js/backend/pages/tapes/show/_components/sections/ShowTapeImageSection.jsx"
     ]
   },
-  "_TapesPage-JaV8IUB5.js": {
-    "file": "assets/TapesPage-JaV8IUB5.js",
+  "_TapesPage-B1dzp3p4.js": {
+    "file": "assets/TapesPage-B1dzp3p4.js",
     "name": "TapesPage",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useTapesStore-D7pqYofv.js",
+      "_useTapesStore-wnJTkgWF.js",
       "resources/js/backend/pages/tapes/index/_components/layout/TapesPageHeader.jsx",
       "resources/js/backend/pages/tapes/index/_components/layout/TapesPageLoading.jsx",
       "resources/js/backend/pages/tapes/index/_components/layout/TapesPageError.jsx",
@@ -78,8 +78,8 @@
     "file": "assets/previewUtils-BrrshhH7.js",
     "name": "previewUtils"
   },
-  "_react-CwKOHZTV.js": {
-    "file": "assets/react-CwKOHZTV.js",
+  "_react-Bit_J6HQ.js": {
+    "file": "assets/react-Bit_J6HQ.js",
     "name": "react",
     "imports": [
       "resources/js/app.jsx"
@@ -89,8 +89,8 @@
     "file": "assets/reportFormatters-CdOeI7Qo.js",
     "name": "reportFormatters"
   },
-  "_search-Dg-6XoOj.js": {
-    "file": "assets/search-Dg-6XoOj.js",
+  "_search-C1o_az6U.js": {
+    "file": "assets/search-C1o_az6U.js",
     "name": "search",
     "imports": [
       "resources/js/app.jsx"
@@ -100,48 +100,48 @@
     "file": "assets/tapeApi-vDlVVdb2.js",
     "name": "tapeApi"
   },
-  "_useCreateTapeStore-BGEMoicn.js": {
-    "file": "assets/useCreateTapeStore-BGEMoicn.js",
+  "_useCreateTapeStore-D9pbXd5Z.js": {
+    "file": "assets/useCreateTapeStore-D9pbXd5Z.js",
     "name": "useCreateTapeStore",
     "imports": [
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
-  "_useEditTapeStore-B5rskjma.js": {
-    "file": "assets/useEditTapeStore-B5rskjma.js",
+  "_useEditTapeStore-DtD3Y4bH.js": {
+    "file": "assets/useEditTapeStore-DtD3Y4bH.js",
     "name": "useEditTapeStore",
     "imports": [
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
-  "_useHomePageStore-jSMpgElY.js": {
-    "file": "assets/useHomePageStore-jSMpgElY.js",
+  "_useHomePageStore-GxUItnNI.js": {
+    "file": "assets/useHomePageStore-GxUItnNI.js",
     "name": "useHomePageStore",
     "imports": [
       "resources/js/app.jsx",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
-  "_useShowTapeStore-arthjXTM.js": {
-    "file": "assets/useShowTapeStore-arthjXTM.js",
+  "_useShowTapeStore-wIOfpiPh.js": {
+    "file": "assets/useShowTapeStore-wIOfpiPh.js",
     "name": "useShowTapeStore",
     "imports": [
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
-  "_useTapesStore-D7pqYofv.js": {
-    "file": "assets/useTapesStore-D7pqYofv.js",
+  "_useTapesStore-wnJTkgWF.js": {
+    "file": "assets/useTapesStore-wnJTkgWF.js",
     "name": "useTapesStore",
     "imports": [
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/app.jsx": {
-    "file": "assets/app-00Lk4KJr.js",
+    "file": "assets/app-BSYAsO4j.js",
     "name": "app",
     "src": "resources/js/app.jsx",
     "isEntry": true,
@@ -172,35 +172,35 @@
       "resources/js/common/reports/_components/ReportsActivitySection.jsx",
       "resources/js/common/reports/_components/ReportsHeroSection.jsx",
       "resources/js/common/reports/_components/ReportsLoadingSection.jsx",
-      "_ReportsSummaryCardsSection-BqfdPaSF.js",
+      "_ReportsSummaryCardsSection-Cv8CN4co.js",
       "resources/js/common/reports/_components/ReportsTableSection.jsx",
       "resources/js/backend/pages/dashbaord/DashBoardPage.jsx",
       "resources/js/backend/pages/settings/SettingsPage.jsx",
-      "_CreateTapePage-Dw5_nQQ2.js",
-      "_CreateTapePage-Dw5_nQQ2.js",
+      "_CreateTapePage-BoRMOYUX.js",
+      "_CreateTapePage-BoRMOYUX.js",
       "resources/js/backend/pages/tapes/create/_components/layout/CreateTapeError.jsx",
       "resources/js/backend/pages/tapes/create/_components/layout/CreateTapeHeader.jsx",
       "resources/js/backend/pages/tapes/create/_components/sections/CreateTapeAttributesSection.jsx",
       "resources/js/backend/pages/tapes/create/_components/sections/CreateTapeGeneralSection.jsx",
       "resources/js/backend/pages/tapes/create/_components/sections/CreateTapeImageSection.jsx",
-      "_EditTapePage-F8X1Zre6.js",
-      "_EditTapePage-F8X1Zre6.js",
+      "_EditTapePage-Dd06hdTS.js",
+      "_EditTapePage-Dd06hdTS.js",
       "resources/js/backend/pages/tapes/edit/_components/layout/EditTapeError.jsx",
       "resources/js/backend/pages/tapes/edit/_components/layout/EditTapeHeader.jsx",
       "resources/js/backend/pages/tapes/edit/_components/layout/EditTapeLoading.jsx",
       "resources/js/backend/pages/tapes/edit/_components/sections/EditTapeAttributesSection.jsx",
       "resources/js/backend/pages/tapes/edit/_components/sections/EditTapeGeneralSection.jsx",
       "resources/js/backend/pages/tapes/edit/_components/sections/EditTapeImageSection.jsx",
-      "_TapesPage-JaV8IUB5.js",
-      "_TapesPage-JaV8IUB5.js",
+      "_TapesPage-B1dzp3p4.js",
+      "_TapesPage-B1dzp3p4.js",
       "resources/js/backend/pages/tapes/index/_components/layout/TapesPageError.jsx",
       "resources/js/backend/pages/tapes/index/_components/layout/TapesPageHeader.jsx",
       "resources/js/backend/pages/tapes/index/_components/layout/TapesPageLoading.jsx",
       "resources/js/backend/pages/tapes/index/_components/sections/TapesFilterSection.jsx",
       "resources/js/backend/pages/tapes/index/_components/sections/TapesListSection.jsx",
       "resources/js/backend/pages/tapes/index/_components/sections/TapesPaginationSection.jsx",
-      "_ShowTapePage-CsT27hOh.js",
-      "_ShowTapePage-CsT27hOh.js",
+      "_ShowTapePage-DpnCfvg0.js",
+      "_ShowTapePage-DpnCfvg0.js",
       "resources/js/backend/pages/tapes/show/_components/layout/ShowTapeError.jsx",
       "resources/js/backend/pages/tapes/show/_components/layout/ShowTapeHeader.jsx",
       "resources/js/backend/pages/tapes/show/_components/layout/ShowTapeLoading.jsx",
@@ -213,11 +213,11 @@
       "resources/js/backend/pages/users/UsersPage.jsx"
     ],
     "css": [
-      "assets/app-3kk2qdBo.css"
+      "assets/app-XBMZAIKC.css"
     ]
   },
   "resources/js/backend/pages/dashbaord/DashBoardPage.jsx": {
-    "file": "assets/DashBoardPage-B_dI3AXV.js",
+    "file": "assets/DashBoardPage-lpy7WZas.js",
     "name": "DashBoardPage",
     "src": "resources/js/backend/pages/dashbaord/DashBoardPage.jsx",
     "isDynamicEntry": true,
@@ -226,7 +226,7 @@
     ]
   },
   "resources/js/backend/pages/settings/SettingsPage.jsx": {
-    "file": "assets/SettingsPage-DKkoT7fX.js",
+    "file": "assets/SettingsPage-bAahsfVX.js",
     "name": "SettingsPage",
     "src": "resources/js/backend/pages/settings/SettingsPage.jsx",
     "isDynamicEntry": true,
@@ -235,7 +235,7 @@
     ]
   },
   "resources/js/backend/pages/tapes/create/_components/layout/CreateTapeError.jsx": {
-    "file": "assets/CreateTapeError-d94cD5YB.js",
+    "file": "assets/CreateTapeError-Ckn4r-xT.js",
     "name": "CreateTapeError",
     "src": "resources/js/backend/pages/tapes/create/_components/layout/CreateTapeError.jsx",
     "isDynamicEntry": true,
@@ -244,7 +244,7 @@
     ]
   },
   "resources/js/backend/pages/tapes/create/_components/layout/CreateTapeHeader.jsx": {
-    "file": "assets/CreateTapeHeader-Bq2VVaM6.js",
+    "file": "assets/CreateTapeHeader-Byutk4aM.js",
     "name": "CreateTapeHeader",
     "src": "resources/js/backend/pages/tapes/create/_components/layout/CreateTapeHeader.jsx",
     "isDynamicEntry": true,
@@ -253,43 +253,43 @@
     ]
   },
   "resources/js/backend/pages/tapes/create/_components/sections/CreateTapeAttributesSection.jsx": {
-    "file": "assets/CreateTapeAttributesSection-CD90bo3W.js",
+    "file": "assets/CreateTapeAttributesSection-Bpfe6fF0.js",
     "name": "CreateTapeAttributesSection",
     "src": "resources/js/backend/pages/tapes/create/_components/sections/CreateTapeAttributesSection.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useCreateTapeStore-BGEMoicn.js",
+      "_useCreateTapeStore-D9pbXd5Z.js",
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/backend/pages/tapes/create/_components/sections/CreateTapeGeneralSection.jsx": {
-    "file": "assets/CreateTapeGeneralSection-DIp3iu1A.js",
+    "file": "assets/CreateTapeGeneralSection-dKldmk_X.js",
     "name": "CreateTapeGeneralSection",
     "src": "resources/js/backend/pages/tapes/create/_components/sections/CreateTapeGeneralSection.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useCreateTapeStore-BGEMoicn.js",
+      "_useCreateTapeStore-D9pbXd5Z.js",
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/backend/pages/tapes/create/_components/sections/CreateTapeImageSection.jsx": {
-    "file": "assets/CreateTapeImageSection-Dkl6EvVp.js",
+    "file": "assets/CreateTapeImageSection-DMY8bJI2.js",
     "name": "CreateTapeImageSection",
     "src": "resources/js/backend/pages/tapes/create/_components/sections/CreateTapeImageSection.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useCreateTapeStore-BGEMoicn.js",
+      "_useCreateTapeStore-D9pbXd5Z.js",
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/backend/pages/tapes/edit/_components/layout/EditTapeError.jsx": {
-    "file": "assets/EditTapeError-A1NF8ucy.js",
+    "file": "assets/EditTapeError-CHnZwl0n.js",
     "name": "EditTapeError",
     "src": "resources/js/backend/pages/tapes/edit/_components/layout/EditTapeError.jsx",
     "isDynamicEntry": true,
@@ -298,7 +298,7 @@
     ]
   },
   "resources/js/backend/pages/tapes/edit/_components/layout/EditTapeHeader.jsx": {
-    "file": "assets/EditTapeHeader-c1NucB3j.js",
+    "file": "assets/EditTapeHeader-BwQfh76J.js",
     "name": "EditTapeHeader",
     "src": "resources/js/backend/pages/tapes/edit/_components/layout/EditTapeHeader.jsx",
     "isDynamicEntry": true,
@@ -307,7 +307,7 @@
     ]
   },
   "resources/js/backend/pages/tapes/edit/_components/layout/EditTapeLoading.jsx": {
-    "file": "assets/EditTapeLoading-BITP5G2e.js",
+    "file": "assets/EditTapeLoading-BooerJAP.js",
     "name": "EditTapeLoading",
     "src": "resources/js/backend/pages/tapes/edit/_components/layout/EditTapeLoading.jsx",
     "isDynamicEntry": true,
@@ -316,43 +316,43 @@
     ]
   },
   "resources/js/backend/pages/tapes/edit/_components/sections/EditTapeAttributesSection.jsx": {
-    "file": "assets/EditTapeAttributesSection-jMXFpmsW.js",
+    "file": "assets/EditTapeAttributesSection-9vwrfN_L.js",
     "name": "EditTapeAttributesSection",
     "src": "resources/js/backend/pages/tapes/edit/_components/sections/EditTapeAttributesSection.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useEditTapeStore-B5rskjma.js",
+      "_useEditTapeStore-DtD3Y4bH.js",
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/backend/pages/tapes/edit/_components/sections/EditTapeGeneralSection.jsx": {
-    "file": "assets/EditTapeGeneralSection-BZ2geEte.js",
+    "file": "assets/EditTapeGeneralSection-BnFxxao9.js",
     "name": "EditTapeGeneralSection",
     "src": "resources/js/backend/pages/tapes/edit/_components/sections/EditTapeGeneralSection.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useEditTapeStore-B5rskjma.js",
+      "_useEditTapeStore-DtD3Y4bH.js",
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/backend/pages/tapes/edit/_components/sections/EditTapeImageSection.jsx": {
-    "file": "assets/EditTapeImageSection-DltT9k-v.js",
+    "file": "assets/EditTapeImageSection-BTS5n1n3.js",
     "name": "EditTapeImageSection",
     "src": "resources/js/backend/pages/tapes/edit/_components/sections/EditTapeImageSection.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useEditTapeStore-B5rskjma.js",
+      "_useEditTapeStore-DtD3Y4bH.js",
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/backend/pages/tapes/index/_components/layout/TapesPageError.jsx": {
-    "file": "assets/TapesPageError-CIz5CQsy.js",
+    "file": "assets/TapesPageError-D5PH8rds.js",
     "name": "TapesPageError",
     "src": "resources/js/backend/pages/tapes/index/_components/layout/TapesPageError.jsx",
     "isDynamicEntry": true,
@@ -361,7 +361,7 @@
     ]
   },
   "resources/js/backend/pages/tapes/index/_components/layout/TapesPageHeader.jsx": {
-    "file": "assets/TapesPageHeader-CzcIEplU.js",
+    "file": "assets/TapesPageHeader-CbBCetM3.js",
     "name": "TapesPageHeader",
     "src": "resources/js/backend/pages/tapes/index/_components/layout/TapesPageHeader.jsx",
     "isDynamicEntry": true,
@@ -370,7 +370,7 @@
     ]
   },
   "resources/js/backend/pages/tapes/index/_components/layout/TapesPageLoading.jsx": {
-    "file": "assets/TapesPageLoading-C8mG8W9u.js",
+    "file": "assets/TapesPageLoading-Cf1sjedq.js",
     "name": "TapesPageLoading",
     "src": "resources/js/backend/pages/tapes/index/_components/layout/TapesPageLoading.jsx",
     "isDynamicEntry": true,
@@ -379,44 +379,44 @@
     ]
   },
   "resources/js/backend/pages/tapes/index/_components/sections/TapesFilterSection.jsx": {
-    "file": "assets/TapesFilterSection-C4uTMOMm.js",
+    "file": "assets/TapesFilterSection-BKkQUJfx.js",
     "name": "TapesFilterSection",
     "src": "resources/js/backend/pages/tapes/index/_components/sections/TapesFilterSection.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useTapesStore-D7pqYofv.js",
-      "_search-Dg-6XoOj.js",
+      "_useTapesStore-wnJTkgWF.js",
+      "_search-C1o_az6U.js",
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/backend/pages/tapes/index/_components/sections/TapesListSection.jsx": {
-    "file": "assets/TapesListSection-DdWhOX5w.js",
+    "file": "assets/TapesListSection-BrKKlE1z.js",
     "name": "TapesListSection",
     "src": "resources/js/backend/pages/tapes/index/_components/sections/TapesListSection.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useTapesStore-D7pqYofv.js",
+      "_useTapesStore-wnJTkgWF.js",
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/backend/pages/tapes/index/_components/sections/TapesPaginationSection.jsx": {
-    "file": "assets/TapesPaginationSection-BqJ4v94R.js",
+    "file": "assets/TapesPaginationSection-CvlzAO25.js",
     "name": "TapesPaginationSection",
     "src": "resources/js/backend/pages/tapes/index/_components/sections/TapesPaginationSection.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useTapesStore-D7pqYofv.js",
+      "_useTapesStore-wnJTkgWF.js",
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/backend/pages/tapes/show/_components/layout/ShowTapeError.jsx": {
-    "file": "assets/ShowTapeError-ueFjmSPM.js",
+    "file": "assets/ShowTapeError-BAA9Tan0.js",
     "name": "ShowTapeError",
     "src": "resources/js/backend/pages/tapes/show/_components/layout/ShowTapeError.jsx",
     "isDynamicEntry": true,
@@ -425,7 +425,7 @@
     ]
   },
   "resources/js/backend/pages/tapes/show/_components/layout/ShowTapeHeader.jsx": {
-    "file": "assets/ShowTapeHeader-h45oB-VD.js",
+    "file": "assets/ShowTapeHeader-BvxzzCLp.js",
     "name": "ShowTapeHeader",
     "src": "resources/js/backend/pages/tapes/show/_components/layout/ShowTapeHeader.jsx",
     "isDynamicEntry": true,
@@ -434,7 +434,7 @@
     ]
   },
   "resources/js/backend/pages/tapes/show/_components/layout/ShowTapeLoading.jsx": {
-    "file": "assets/ShowTapeLoading-Csj2V8bd.js",
+    "file": "assets/ShowTapeLoading-CJ0YitU8.js",
     "name": "ShowTapeLoading",
     "src": "resources/js/backend/pages/tapes/show/_components/layout/ShowTapeLoading.jsx",
     "isDynamicEntry": true,
@@ -443,43 +443,43 @@
     ]
   },
   "resources/js/backend/pages/tapes/show/_components/sections/ShowTapeAttributesSection.jsx": {
-    "file": "assets/ShowTapeAttributesSection-Bqwlb_By.js",
+    "file": "assets/ShowTapeAttributesSection-CJT3fhwl.js",
     "name": "ShowTapeAttributesSection",
     "src": "resources/js/backend/pages/tapes/show/_components/sections/ShowTapeAttributesSection.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useShowTapeStore-arthjXTM.js",
+      "_useShowTapeStore-wIOfpiPh.js",
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/backend/pages/tapes/show/_components/sections/ShowTapeGeneralSection.jsx": {
-    "file": "assets/ShowTapeGeneralSection-Cxk1jVd1.js",
+    "file": "assets/ShowTapeGeneralSection-rRx2ggIi.js",
     "name": "ShowTapeGeneralSection",
     "src": "resources/js/backend/pages/tapes/show/_components/sections/ShowTapeGeneralSection.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useShowTapeStore-arthjXTM.js",
+      "_useShowTapeStore-wIOfpiPh.js",
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/backend/pages/tapes/show/_components/sections/ShowTapeImageSection.jsx": {
-    "file": "assets/ShowTapeImageSection-D9Ej_UtZ.js",
+    "file": "assets/ShowTapeImageSection-A3Eazt-m.js",
     "name": "ShowTapeImageSection",
     "src": "resources/js/backend/pages/tapes/show/_components/sections/ShowTapeImageSection.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useShowTapeStore-arthjXTM.js",
+      "_useShowTapeStore-wIOfpiPh.js",
       "_tapeApi-vDlVVdb2.js",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/backend/pages/users/CreateUserPage.jsx": {
-    "file": "assets/CreateUserPage-CxYWgp3-.js",
+    "file": "assets/CreateUserPage-DPzAWfgM.js",
     "name": "CreateUserPage",
     "src": "resources/js/backend/pages/users/CreateUserPage.jsx",
     "isDynamicEntry": true,
@@ -488,7 +488,7 @@
     ]
   },
   "resources/js/backend/pages/users/EditUserPage.jsx": {
-    "file": "assets/EditUserPage-Y04xEiha.js",
+    "file": "assets/EditUserPage-B0S9PDI-.js",
     "name": "EditUserPage",
     "src": "resources/js/backend/pages/users/EditUserPage.jsx",
     "isDynamicEntry": true,
@@ -497,7 +497,7 @@
     ]
   },
   "resources/js/backend/pages/users/ShowUserPage.jsx": {
-    "file": "assets/ShowUserPage-vBeJekLD.js",
+    "file": "assets/ShowUserPage-BuvNh_jM.js",
     "name": "ShowUserPage",
     "src": "resources/js/backend/pages/users/ShowUserPage.jsx",
     "isDynamicEntry": true,
@@ -506,17 +506,17 @@
     ]
   },
   "resources/js/backend/pages/users/UsersPage.jsx": {
-    "file": "assets/UsersPage-acrGqeGY.js",
+    "file": "assets/UsersPage-uJ7Pw4T-.js",
     "name": "UsersPage",
     "src": "resources/js/backend/pages/users/UsersPage.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_search-Dg-6XoOj.js"
+      "_search-C1o_az6U.js"
     ]
   },
   "resources/js/common/reports/ReportsPage.jsx": {
-    "file": "assets/ReportsPage-DrzBRZkp.js",
+    "file": "assets/ReportsPage-Dmb9Bnek.js",
     "name": "ReportsPage",
     "src": "resources/js/common/reports/ReportsPage.jsx",
     "isDynamicEntry": true,
@@ -525,15 +525,15 @@
       "resources/js/common/reports/_components/ReportsHeroSection.jsx",
       "resources/js/common/reports/_components/ReportsLoadingSection.jsx",
       "resources/js/common/reports/_components/ReportsActivitySection.jsx",
-      "_ReportsSummaryCardsSection-BqfdPaSF.js",
+      "_ReportsSummaryCardsSection-Cv8CN4co.js",
       "resources/js/common/reports/_components/ReportsTableSection.jsx",
       "_reportFormatters-CdOeI7Qo.js",
       "resources/js/common/reports/_components/ReportTooltip.jsx",
-      "_CartesianChart-DqPYOCw3.js"
+      "_CartesianChart-_KAg4d_A.js"
     ]
   },
   "resources/js/common/reports/_components/ReportTooltip.jsx": {
-    "file": "assets/ReportTooltip-D2Ga0f7b.js",
+    "file": "assets/ReportTooltip-D-DE7ePP.js",
     "name": "ReportTooltip",
     "src": "resources/js/common/reports/_components/ReportTooltip.jsx",
     "isDynamicEntry": true,
@@ -543,7 +543,7 @@
     ]
   },
   "resources/js/common/reports/_components/ReportsActivitySection.jsx": {
-    "file": "assets/ReportsActivitySection-D4I-VnSP.js",
+    "file": "assets/ReportsActivitySection-DogauKzL.js",
     "name": "ReportsActivitySection",
     "src": "resources/js/common/reports/_components/ReportsActivitySection.jsx",
     "isDynamicEntry": true,
@@ -551,11 +551,11 @@
       "resources/js/app.jsx",
       "_reportFormatters-CdOeI7Qo.js",
       "resources/js/common/reports/_components/ReportTooltip.jsx",
-      "_CartesianChart-DqPYOCw3.js"
+      "_CartesianChart-_KAg4d_A.js"
     ]
   },
   "resources/js/common/reports/_components/ReportsHeroSection.jsx": {
-    "file": "assets/ReportsHeroSection-DehfTGKH.js",
+    "file": "assets/ReportsHeroSection-gvrp_3-C.js",
     "name": "ReportsHeroSection",
     "src": "resources/js/common/reports/_components/ReportsHeroSection.jsx",
     "isDynamicEntry": true,
@@ -563,11 +563,11 @@
       "resources/js/app.jsx",
       "_reportFormatters-CdOeI7Qo.js",
       "resources/js/common/reports/_components/ReportTooltip.jsx",
-      "_CartesianChart-DqPYOCw3.js"
+      "_CartesianChart-_KAg4d_A.js"
     ]
   },
   "resources/js/common/reports/_components/ReportsLoadingSection.jsx": {
-    "file": "assets/ReportsLoadingSection-BJWxXvKH.js",
+    "file": "assets/ReportsLoadingSection-B7YGMbLO.js",
     "name": "ReportsLoadingSection",
     "src": "resources/js/common/reports/_components/ReportsLoadingSection.jsx",
     "isDynamicEntry": true,
@@ -576,7 +576,7 @@
     ]
   },
   "resources/js/common/reports/_components/ReportsTableSection.jsx": {
-    "file": "assets/ReportsTableSection-BbenHEbn.js",
+    "file": "assets/ReportsTableSection-er9uKM0I.js",
     "name": "ReportsTableSection",
     "src": "resources/js/common/reports/_components/ReportsTableSection.jsx",
     "isDynamicEntry": true,
@@ -586,7 +586,7 @@
     ]
   },
   "resources/js/frontend/pages/auth/SignInPage.jsx": {
-    "file": "assets/SignInPage-Crz0Aq0u.js",
+    "file": "assets/SignInPage--zAyPfJ5.js",
     "name": "SignInPage",
     "src": "resources/js/frontend/pages/auth/SignInPage.jsx",
     "isDynamicEntry": true,
@@ -595,7 +595,7 @@
     ]
   },
   "resources/js/frontend/pages/home/HomePage.jsx": {
-    "file": "assets/HomePage-DvvoB1Gk.js",
+    "file": "assets/HomePage-DauaG54o.js",
     "name": "HomePage",
     "src": "resources/js/frontend/pages/home/HomePage.jsx",
     "isDynamicEntry": true,
@@ -605,7 +605,7 @@
       "resources/js/frontend/pages/home/_components/HomePageHeader.jsx",
       "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/HomePageTapePreviewModal.jsx",
       "resources/js/frontend/pages/home/_components/HomePageTable/HomePageTable.jsx",
-      "_useHomePageStore-jSMpgElY.js",
+      "_useHomePageStore-GxUItnNI.js",
       "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewHeader.jsx",
       "_previewUtils-BrrshhH7.js",
       "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/tapeNavigation/TapeNavigation.jsx",
@@ -620,62 +620,62 @@
       "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableDataRow.jsx",
       "resources/js/frontend/pages/home/_components/cells/PosterCell.jsx",
       "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableFooter.jsx",
-      "_react-CwKOHZTV.js"
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePageFilters.jsx": {
-    "file": "assets/HomePageFilters-C1WfyOlH.js",
+    "file": "assets/HomePageFilters-Cki_J3Kl.js",
     "name": "HomePageFilters",
     "src": "resources/js/frontend/pages/home/_components/HomePageFilters.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useHomePageStore-jSMpgElY.js",
-      "_react-CwKOHZTV.js"
+      "_useHomePageStore-GxUItnNI.js",
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePageHeader.jsx": {
-    "file": "assets/HomePageHeader-BbCZfpuX.js",
+    "file": "assets/HomePageHeader-BaV1P6z4.js",
     "name": "HomePageHeader",
     "src": "resources/js/frontend/pages/home/_components/HomePageHeader.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useHomePageStore-jSMpgElY.js",
-      "_react-CwKOHZTV.js"
+      "_useHomePageStore-GxUItnNI.js",
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePagePagination.jsx": {
-    "file": "assets/HomePagePagination-s-HFgots.js",
+    "file": "assets/HomePagePagination-DMB_WqbE.js",
     "name": "HomePagePagination",
     "src": "resources/js/frontend/pages/home/_components/HomePagePagination.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useHomePageStore-jSMpgElY.js",
-      "_react-CwKOHZTV.js"
+      "_useHomePageStore-GxUItnNI.js",
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePageTable/HomePageTable.jsx": {
-    "file": "assets/HomePageTable-DvDX3tjn.js",
+    "file": "assets/HomePageTable-IlDC9qKf.js",
     "name": "HomePageTable",
     "src": "resources/js/frontend/pages/home/_components/HomePageTable/HomePageTable.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useHomePageStore-jSMpgElY.js",
+      "_useHomePageStore-GxUItnNI.js",
       "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableTopBar.jsx",
       "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableHead.jsx",
       "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableStatusRow.jsx",
       "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableDataRow.jsx",
       "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableFooter.jsx",
-      "_react-CwKOHZTV.js",
+      "_react-Bit_J6HQ.js",
       "resources/js/frontend/pages/home/_components/cells/PosterCell.jsx",
       "resources/js/frontend/pages/home/_components/ui/Chip.jsx"
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableDataRow.jsx": {
-    "file": "assets/HomePageTableDataRow-OkTGeHQL.js",
+    "file": "assets/HomePageTableDataRow-CTP6RGi8.js",
     "name": "HomePageTableDataRow",
     "src": "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableDataRow.jsx",
     "isDynamicEntry": true,
@@ -686,7 +686,7 @@
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableFooter.jsx": {
-    "file": "assets/HomePageTableFooter-B78E8cm0.js",
+    "file": "assets/HomePageTableFooter-BGH374pv.js",
     "name": "HomePageTableFooter",
     "src": "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableFooter.jsx",
     "isDynamicEntry": true,
@@ -695,7 +695,7 @@
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableHead.jsx": {
-    "file": "assets/HomePageTableHead-uCv_bfg_.js",
+    "file": "assets/HomePageTableHead-Cccxc6dK.js",
     "name": "HomePageTableHead",
     "src": "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableHead.jsx",
     "isDynamicEntry": true,
@@ -704,7 +704,7 @@
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableStatusRow.jsx": {
-    "file": "assets/HomePageTableStatusRow-DLuHWMns.js",
+    "file": "assets/HomePageTableStatusRow-CtCkZ8d-.js",
     "name": "HomePageTableStatusRow",
     "src": "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableStatusRow.jsx",
     "isDynamicEntry": true,
@@ -713,7 +713,7 @@
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableTopBar.jsx": {
-    "file": "assets/HomePageTableTopBar-EOY_qN1Y.js",
+    "file": "assets/HomePageTableTopBar-CBeKeNsF.js",
     "name": "HomePageTableTopBar",
     "src": "resources/js/frontend/pages/home/_components/HomePageTable/_components/HomePageTableTopBar.jsx",
     "isDynamicEntry": true,
@@ -722,26 +722,26 @@
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/HomePageTapePreviewModal.jsx": {
-    "file": "assets/HomePageTapePreviewModal-CWWgESTb.js",
+    "file": "assets/HomePageTapePreviewModal-Bvl6G_Zz.js",
     "name": "HomePageTapePreviewModal",
     "src": "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/HomePageTapePreviewModal.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useHomePageStore-jSMpgElY.js",
+      "_useHomePageStore-GxUItnNI.js",
       "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewHeader.jsx",
       "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewImageGallery.jsx",
       "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewDetailsTable.jsx",
       "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewZoomOverlay.jsx",
       "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewStatus.jsx",
       "_previewUtils-BrrshhH7.js",
-      "_react-CwKOHZTV.js",
+      "_react-Bit_J6HQ.js",
       "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/tapeNavigation/TapeNavigation.jsx",
       "resources/js/frontend/pages/home/_components/ui/Chip.jsx"
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewDetailsTable.jsx": {
-    "file": "assets/PreviewDetailsTable-BmdND-IX.js",
+    "file": "assets/PreviewDetailsTable-BV7wnUoE.js",
     "name": "PreviewDetailsTable",
     "src": "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewDetailsTable.jsx",
     "isDynamicEntry": true,
@@ -752,7 +752,7 @@
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewHeader.jsx": {
-    "file": "assets/PreviewHeader-BoD3GmKR.js",
+    "file": "assets/PreviewHeader-By4xDWX3.js",
     "name": "PreviewHeader",
     "src": "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewHeader.jsx",
     "isDynamicEntry": true,
@@ -760,12 +760,12 @@
       "resources/js/app.jsx",
       "_previewUtils-BrrshhH7.js",
       "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/tapeNavigation/TapeNavigation.jsx",
-      "_useHomePageStore-jSMpgElY.js",
-      "_react-CwKOHZTV.js"
+      "_useHomePageStore-GxUItnNI.js",
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewImageGallery.jsx": {
-    "file": "assets/PreviewImageGallery-CBuz88yb.js",
+    "file": "assets/PreviewImageGallery-BfN5v6rJ.js",
     "name": "PreviewImageGallery",
     "src": "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewImageGallery.jsx",
     "isDynamicEntry": true,
@@ -774,7 +774,7 @@
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewStatus.jsx": {
-    "file": "assets/PreviewStatus-DtMEHupD.js",
+    "file": "assets/PreviewStatus-Cpb0Lhv8.js",
     "name": "PreviewStatus",
     "src": "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewStatus.jsx",
     "isDynamicEntry": true,
@@ -783,7 +783,7 @@
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewZoomOverlay.jsx": {
-    "file": "assets/PreviewZoomOverlay-Bl3P7Ihg.js",
+    "file": "assets/PreviewZoomOverlay-4p7EF58Z.js",
     "name": "PreviewZoomOverlay",
     "src": "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/PreviewZoomOverlay.jsx",
     "isDynamicEntry": true,
@@ -792,18 +792,18 @@
     ]
   },
   "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/tapeNavigation/TapeNavigation.jsx": {
-    "file": "assets/TapeNavigation-D0Nw2CgF.js",
+    "file": "assets/TapeNavigation-COfGd2I6.js",
     "name": "TapeNavigation",
     "src": "resources/js/frontend/pages/home/_components/HomePageTapePreviewModal/_compoennts/tapeNavigation/TapeNavigation.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_useHomePageStore-jSMpgElY.js",
-      "_react-CwKOHZTV.js"
+      "_useHomePageStore-GxUItnNI.js",
+      "_react-Bit_J6HQ.js"
     ]
   },
   "resources/js/frontend/pages/home/_components/cells/PosterCell.jsx": {
-    "file": "assets/PosterCell-Time_S1M.js",
+    "file": "assets/PosterCell-OrTNs83M.js",
     "name": "PosterCell",
     "src": "resources/js/frontend/pages/home/_components/cells/PosterCell.jsx",
     "isDynamicEntry": true,
@@ -812,7 +812,7 @@
     ]
   },
   "resources/js/frontend/pages/home/_components/ui/Chip.jsx": {
-    "file": "assets/Chip-DQ_IdrLo.js",
+    "file": "assets/Chip-C5JjXdnS.js",
     "name": "Chip",
     "src": "resources/js/frontend/pages/home/_components/ui/Chip.jsx",
     "isDynamicEntry": true,
@@ -821,7 +821,7 @@
     ]
   },
   "resources/js/frontend/pages/site-info/SiteInfoPage.jsx": {
-    "file": "assets/SiteInfoPage-TtViwa38.js",
+    "file": "assets/SiteInfoPage-Dj-0C98Y.js",
     "name": "SiteInfoPage",
     "src": "resources/js/frontend/pages/site-info/SiteInfoPage.jsx",
     "isDynamicEntry": true,
