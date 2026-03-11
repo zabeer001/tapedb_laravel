@@ -10,9 +10,11 @@ class TapeDeleteService
 {
     public function handle(Tape $tape): JsonResponse
     {
+        $storage = Storage::disk(config('filesystems.tape_image_disk', 'public'));
+
         foreach (['img1', 'img2', 'img3', 'img4', 'img5', 'img6'] as $field) {
-            if (! empty($tape->$field) && Storage::disk('public')->exists($tape->$field)) {
-                Storage::disk('public')->delete($tape->$field);
+            if (! empty($tape->$field) && $storage->exists($tape->$field)) {
+                $storage->delete($tape->$field);
             }
         }
 

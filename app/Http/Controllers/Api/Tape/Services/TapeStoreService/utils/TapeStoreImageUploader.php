@@ -11,13 +11,15 @@ class TapeStoreImageUploader
 
     public function attachStoredPaths(Request $request, array $validated): array
     {
+        $disk = config('filesystems.tape_image_disk', 'public');
+
         foreach (self::IMAGE_FIELDS as $field) {
             if ($request->hasFile($field)) {
                 $file = $request->file($field);
                 $extension = $file->getClientOriginalExtension() ?: $file->extension();
                 $filename = time() . '_' . Str::random(10) . '.' . $extension;
 
-                $validated[$field] = $file->storeAs('tapes', $filename, 'public');
+                $validated[$field] = $file->storeAs('tapes', $filename, $disk);
             }
         }
 
