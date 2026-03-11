@@ -22,17 +22,13 @@ function buildImagePath(path) {
     return null;
   }
 
-  if (path.startsWith("http://") || path.startsWith("https://")) {
-    return path;
-  }
-
-  return `/storage/${path}`;
+  return path;
 }
 
 export function mapTapeToRow(tape) {
   return {
     id: tape.id,
-    poster: buildImagePath(tape.img1),
+    poster: buildImagePath(tape.img1_url || tape.img1),
     title: toDisplayText(tape.title || tape.name),
     year: toDisplayText(tape.year),
     distributor: toDisplayText(tape.distributor),

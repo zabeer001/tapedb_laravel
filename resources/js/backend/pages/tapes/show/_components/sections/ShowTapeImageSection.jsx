@@ -14,7 +14,7 @@ function ShowTapeImageSection() {
             <h2 className="mb-3 text-xl font-bold">Images</h2>
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                 {IMAGE_FIELDS.map((field) => {
-                    const image = tape[field];
+                    const image = tape[`${field}_url`];
 
                     if (!image) {
                         return (
@@ -30,7 +30,7 @@ function ShowTapeImageSection() {
                     return (
                         <img
                             key={field}
-                            src={`/storage/${image}`}
+                            src={image}
                             alt={field}
                             className="h-40 w-full rounded-lg border border-base-300 object-cover"
                         />

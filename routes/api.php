@@ -13,10 +13,9 @@ Route::post('signin', [AuthController::class, 'signin']);
 Route::post('refresh', [AuthController::class, 'refresh']);
 Route::post('signout', [AuthController::class, 'signout']);
 
-
-
 Route::apiResource('users', UserController::class);
 Route::get('tapes/stats', [TapeController::class, 'stats']);
+
 Route::apiResource('tapes', TapeController::class);
 Route::get('reports/stats', [ReportController::class, 'stats']);
 Route::post('next-tape', [TapeController::class, 'nextTape']);

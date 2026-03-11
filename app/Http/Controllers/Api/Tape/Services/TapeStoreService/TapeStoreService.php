@@ -29,6 +29,6 @@ class TapeStoreService
             'status' => 'success',
             'message' => 'Tape created successfully.',
             'data' => $tape,
-        ], 201);
+        ], 201, [], JSON_UNESCAPED_SLASHES);
     }
 }

@@ -12,6 +12,6 @@ class TapeShowService
         return response()->json([
             'status' => 'success',
             'data' => $tape,
-        ]);
+        ], 200, [], JSON_UNESCAPED_SLASHES);
     }
 }

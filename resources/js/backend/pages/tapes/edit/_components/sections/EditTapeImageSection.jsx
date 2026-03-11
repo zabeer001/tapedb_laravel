@@ -27,8 +27,11 @@ function EditTapeImageSection() {
             <h3 className="mb-3 font-semibold">Images (img1 - img6)</h3>
             <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
                 {EDIT_IMAGE_FIELDS.map((field, index) => {
-                    const hasCurrentImage = Boolean(tape[field]);
-                    const currentImage = hasCurrentImage && !removeImages[field] ? `/storage/${tape[field]}` : null;
+                    const imageUrl = tape[`${field}_url`] || null;
+                    const hasCurrentImage = Boolean(imageUrl);
+                    const currentImage = hasCurrentImage && !removeImages[field]
+                        ? imageUrl
+                        : null;
                     const previewImage = previews[field] || null;
                     const shownImage = previewImage || currentImage;
                     const canRemove = hasCurrentImage || Boolean(previewImage);

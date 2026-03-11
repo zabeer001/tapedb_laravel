@@ -14,11 +14,7 @@ export function toImageUrl(path) {
     return null;
   }
 
-  if (path.startsWith("http://") || path.startsWith("https://")) {
-    return path;
-  }
-
-  return `/storage/${path}`;
+  return path;
 }
 
 export function isTruthyFlag(value) {
@@ -66,6 +62,6 @@ export function buildImageItems(previewTape) {
 
   return IMAGE_FIELDS.map((field) => ({
     field,
-    src: toImageUrl(previewTape[field]),
+    src: toImageUrl(previewTape[`${field}_url`] || previewTape[field]),
   })).filter((item) => Boolean(item.src));
 }

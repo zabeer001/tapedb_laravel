@@ -53,6 +53,6 @@ class TapeIndexService
         return response()->json([
             'status' => 'success',
             'data' => $query->paginate($perPage),
-        ]);
+        ], 200, [], JSON_UNESCAPED_SLASHES);
     }
 }

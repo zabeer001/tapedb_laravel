@@ -29,6 +29,6 @@ class TapeUpdateService
             'status' => 'success',
             'message' => 'Tape updated successfully.',
             'data' => $tape->fresh(),
-        ]);
+        ], 200, [], JSON_UNESCAPED_SLASHES);
     }
 }
