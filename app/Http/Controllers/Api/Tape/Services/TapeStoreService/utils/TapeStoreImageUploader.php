@@ -23,7 +23,8 @@ class TapeStoreImageUploader
                 $file = $request->file($field);
                 $extension = $file->getClientOriginalExtension() ?: $file->extension();
                 $filename = time() . '_' . Str::random(10) . '.' . $extension;
-                $storedPath = $file->storeAs('tapes', $filename, $disk);
+                $directory = 'tapes/' . now()->format('Y/m/d');
+                $storedPath = $file->storeAs($directory, $filename, $disk);
 
                 if ($storedPath === false) {
                     continue;
