@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Tape\Services\TapeUpdateService\utils;
 
 use App\Models\Tape;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class TapeUpdateImageOperator
@@ -16,7 +17,10 @@ class TapeUpdateImageOperator
             $currentPath = $tape->{$field};
 
             if ($request->hasFile($field)) {
-                $validated[$field] = $request->file($field)->store('tapes', 'public');
+                $file = $request->file($field);
+                $extension = $file->getClientOriginalExtension() ?: $file->extension();
+                $filename = time() . '_' . Str::random(10) . '.' . $extension;
+                $validated[$field] = $file->storeAs('tapes', $filename, 'public');
 
                 if (! empty($currentPath) && Storage::disk('public')->exists($currentPath)) {
                     Storage::disk('public')->delete($currentPath);

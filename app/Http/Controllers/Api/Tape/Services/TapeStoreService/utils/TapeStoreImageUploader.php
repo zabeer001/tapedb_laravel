@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Tape\Services\TapeStoreService\utils;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TapeStoreImageUploader
 {
@@ -12,7 +13,11 @@ class TapeStoreImageUploader
     {
         foreach (self::IMAGE_FIELDS as $field) {
             if ($request->hasFile($field)) {
-                $validated[$field] = $request->file($field)->store('tapes', 'public');
+                $file = $request->file($field);
+                $extension = $file->getClientOriginalExtension() ?: $file->extension();
+                $filename = time() . '_' . Str::random(10) . '.' . $extension;
+
+                $validated[$field] = $file->storeAs('tapes', $filename, 'public');
             }
         }
 
