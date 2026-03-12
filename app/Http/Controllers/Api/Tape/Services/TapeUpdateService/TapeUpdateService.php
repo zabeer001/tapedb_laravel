@@ -14,7 +14,7 @@ class TapeUpdateService
     public function __construct(
         private readonly TapeUpdateValidationRules $validationRules,
         private readonly AuthenticatedUserResolverInterface $authenticatedUserResolver,
-        private readonly TapeUpdateImageOperator $imageOperator
+        private readonly TapeUpdateImageOperator $imageOperator,
     ) {}
 
     public function handle(Request $request, Tape $tape): JsonResponse
