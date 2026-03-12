@@ -3,11 +3,18 @@ import { Link } from '@inertiajs/react';
 import useTapesStore from '../../_store/useTapesStore';
 
 function TapesListSection() {
+    const role = (localStorage.getItem('role') || 'user').toLowerCase();
+    const canEditTape = ['admin', 'superadmin', 'editor'].includes(role);
+    const canDeleteTape = ['admin', 'superadmin'].includes(role);
     const tapes = useTapesStore((state) => state.tapes);
     const deletingId = useTapesStore((state) => state.deletingId);
     const deleteTape = useTapesStore((state) => state.deleteTape);
 
     const onDeleteTape = async (tapeId) => {
+        if (!canDeleteTape) {
+            return;
+        }
+
         if (!window.confirm(`Delete tape #${tapeId}?`)) {
             return;
         }
@@ -72,17 +79,21 @@ function TapesListSection() {
                                         <Link href={`/dashbaord/tapes/${tape.id}`} className="btn btn-xs btn-outline">
                                             View
                                         </Link>
-                                        <Link href={`/dashbaord/tapes/${tape.id}/edit`} className="btn btn-xs btn-info">
-                                            Edit
-                                        </Link>
-                                        <button
-                                            type="button"
-                                            className="btn btn-xs btn-error"
-                                            disabled={Boolean(deletingId === tape.id)}
-                                            onClick={() => onDeleteTape(tape.id)}
-                                        >
-                                            {deletingId === tape.id ? 'Deleting...' : 'Delete'}
-                                        </button>
+                                        {canEditTape ? (
+                                            <Link href={`/dashbaord/tapes/${tape.id}/edit`} className="btn btn-xs btn-info">
+                                                Edit
+                                            </Link>
+                                        ) : null}
+                                        {canDeleteTape ? (
+                                            <button
+                                                type="button"
+                                                className="btn btn-xs btn-error"
+                                                disabled={Boolean(deletingId === tape.id)}
+                                                onClick={() => onDeleteTape(tape.id)}
+                                            >
+                                                {deletingId === tape.id ? 'Deleting...' : 'Delete'}
+                                            </button>
+                                        ) : null}
                                     </div>
                                 </td>
                             </tr>

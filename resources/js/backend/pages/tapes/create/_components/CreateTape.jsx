@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import CreateTapeHeader from './layout/CreateTapeHeader';
 import CreateTapeError from './layout/CreateTapeError';
 import CreateTapeGeneralSection from './sections/CreateTapeGeneralSection';
 import CreateTapeAttributesSection from './sections/CreateTapeAttributesSection';
 import CreateTapeImageSection from './sections/CreateTapeImageSection';
 import useCreateTapeStore from '../_store/useCreateTapeStore';
+import useAuth from '../../../../../shared/hooks/useAuth';
 
 function CreateTape() {
+    const { isAuthenticated } = useAuth();
+    const role = useMemo(() => (localStorage.getItem('role') || 'user').toLowerCase(), []);
+    const canAccessCreate = isAuthenticated && ['admin', 'superadmin', 'editor'].includes(role);
     const isSaving = useCreateTapeStore((state) => state.isSaving);
     const error = useCreateTapeStore((state) => state.error);
     const submit = useCreateTapeStore((state) => state.submit);
@@ -27,6 +31,11 @@ function CreateTape() {
             window.location.href = '/dashbaord/tapes?created=1';
         }
     };
+
+    if (!canAccessCreate) {
+        window.location.replace('/dashbaord/unauthorized');
+        return null;
+    }
 
     return (
         <div className="mx-auto max-w-7xl space-y-6">

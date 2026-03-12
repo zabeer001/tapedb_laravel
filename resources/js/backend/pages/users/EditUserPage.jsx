@@ -1,9 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, usePage } from '@inertiajs/react';
+import useAuth from '../../../shared/hooks/useAuth';
 
 function EditUserPage() {
     const { userId } = usePage().props;
+    const { isAuthenticated } = useAuth();
     const userRole = useMemo(() => localStorage.getItem('role') || 'user', []);
+    const canAccessUsers = isAuthenticated && ['admin', 'superadmin'].includes(userRole.toLowerCase());
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
@@ -63,6 +66,10 @@ function EditUserPage() {
     };
 
     useEffect(() => {
+        if (!canAccessUsers) {
+            return;
+        }
+
         const loadUser = async () => {
             setIsLoading(true);
 
@@ -87,7 +94,7 @@ function EditUserPage() {
         };
 
         loadUser();
-    }, [userId]);
+    }, [userId, canAccessUsers]);
 
     const onFieldChange = (event) => {
         const { name, value } = event.target;
@@ -120,6 +127,11 @@ function EditUserPage() {
             setIsSaving(false);
         }
     };
+
+    if (!canAccessUsers) {
+        window.location.replace('/dashbaord/unauthorized');
+        return null;
+    }
 
     return (
         <div className="mx-auto max-w-7xl space-y-6">

@@ -19,7 +19,11 @@ class TapeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:api', 'role:admin,superadmin'])->except(['index', 'show', 'stats','nextTape', 'previousTape']);
+        $this->middleware(['auth:api', 'role:admin,superadmin,editor'])
+            ->except(['index', 'show', 'stats', 'nextTape', 'previousTape', 'destroy']);
+            
+        $this->middleware(['auth:api', 'role:admin,superadmin'])->only(['destroy']);
+      
         $this->middleware('throttle:300,1')->only(['index']);
         $this->middleware('throttle:20,1')->except(['index']);
     }

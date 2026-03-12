@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import {
-    BarChart3,
     LayoutDashboard,
     Disc3,
     Settings,
@@ -19,6 +18,9 @@ const menuItems = [
 
 function Sidebar() {
     const { url } = usePage();
+    const role = useMemo(() => (localStorage.getItem('role') || 'user').toLowerCase(), []);
+    const canAccessUsers = ['admin', 'superadmin'].includes(role);
+    const visibleItems = menuItems.filter((item) => item.label !== 'Users' || canAccessUsers);
 
     return (
         <aside className="drawer-side z-20">
@@ -32,7 +34,7 @@ function Sidebar() {
                 </div>
 
                 <ul className="menu w-full rounded-box p-0">
-                    {menuItems.map((item) => {
+                    {visibleItems.map((item) => {
                         const Icon = item.icon;
                         const isActive = url === item.href;
 

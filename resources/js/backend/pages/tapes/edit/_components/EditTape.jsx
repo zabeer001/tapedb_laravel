@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { usePage } from '@inertiajs/react';
 import useEditTapeStore from '../_store/useEditTapeStore';
 import EditTapeHeader from './layout/EditTapeHeader';
@@ -7,9 +7,13 @@ import EditTapeError from './layout/EditTapeError';
 import EditTapeGeneralSection from './sections/EditTapeGeneralSection';
 import EditTapeAttributesSection from './sections/EditTapeAttributesSection';
 import EditTapeImageSection from './sections/EditTapeImageSection';
+import useAuth from '../../../../../shared/hooks/useAuth';
 
 function EditTape() {
     const { tapeId } = usePage().props;
+    const { isAuthenticated } = useAuth();
+    const role = useMemo(() => (localStorage.getItem('role') || 'user').toLowerCase(), []);
+    const canAccessEdit = isAuthenticated && ['admin', 'superadmin', 'editor'].includes(role);
     const isLoading = useEditTapeStore((state) => state.isLoading);
     const isSaving = useEditTapeStore((state) => state.isSaving);
     const error = useEditTapeStore((state) => state.error);
@@ -18,6 +22,10 @@ function EditTape() {
     const reset = useEditTapeStore((state) => state.reset);
 
     useEffect(() => {
+        if (!canAccessEdit) {
+            return;
+        }
+
         if (!tapeId) {
             return;
         }
@@ -27,7 +35,7 @@ function EditTape() {
         return () => {
             reset();
         };
-    }, [loadTape, reset, tapeId]);
+    }, [canAccessEdit, loadTape, reset, tapeId]);
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -38,6 +46,11 @@ function EditTape() {
             window.location.href = `/dashbaord/tapes/${tapeId}?updated=1`;
         }
     };
+
+    if (!canAccessEdit) {
+        window.location.replace('/dashbaord/unauthorized');
+        return null;
+    }
 
     return (
         <div className="mx-auto max-w-7xl space-y-6">

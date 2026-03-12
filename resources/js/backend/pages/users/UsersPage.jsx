@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from '@inertiajs/react';
 import { RotateCcw, Search } from 'lucide-react';
+import useAuth from '../../../shared/hooks/useAuth';
 
 const ROLE_OPTIONS = ['all', 'user', 'admin', 'superadmin'];
 
@@ -146,7 +147,9 @@ function UsersListSection({ users, onDeleteUser }) {
 }
 
 function UsersPage() {
+    const { isAuthenticated } = useAuth();
     const userRole = useMemo(() => localStorage.getItem('role') || 'user', []);
+    const canAccessUsers = isAuthenticated && ['admin', 'superadmin'].includes(userRole.toLowerCase());
     const initialFilters = useMemo(() => {
         const params = new URLSearchParams(window.location.search);
 
@@ -166,6 +169,11 @@ function UsersPage() {
     const [roleValue, setRoleValue] = useState(initialFilters.role);
     const [activeRole, setActiveRole] = useState(initialFilters.role);
     const didMountFilters = useRef(false);
+
+    if (!canAccessUsers) {
+        window.location.replace('/dashbaord/unauthorized');
+        return null;
+    }
 
     const getErrorMessage = (payload, fallbackMessage) => {
         if (payload?.message) {

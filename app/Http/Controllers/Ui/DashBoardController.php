@@ -70,4 +70,9 @@ class DashBoardController extends Controller
     {
         return Inertia::render('backend/pages/settings/SettingsPage');
     }
+
+    public function unauthorized(): Response
+    {
+        return Inertia::render('backend/pages/unauthorized/UnauthorizedPage');
+    }
 }

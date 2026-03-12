@@ -1,8 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import { Link } from '@inertiajs/react';
+import useAuth from '../../../shared/hooks/useAuth';
 
 function CreateUserPage() {
+    const { isAuthenticated } = useAuth();
     const userRole = useMemo(() => localStorage.getItem('role') || 'user', []);
+    const canAccessUsers = isAuthenticated && ['admin', 'superadmin'].includes(userRole.toLowerCase());
     const [isSaving, setIsSaving] = useState(false);
     const [error, setError] = useState('');
     const [form, setForm] = useState({
@@ -90,6 +93,11 @@ function CreateUserPage() {
             setIsSaving(false);
         }
     };
+
+    if (!canAccessUsers) {
+        window.location.replace('/dashbaord/unauthorized');
+        return null;
+    }
 
     return (
         <div className="mx-auto max-w-7xl space-y-6">

@@ -11,6 +11,7 @@ Route::get('/users', [DashBoardController::class, 'users']);
 Route::get('/users/create', [DashBoardController::class, 'userCreate']);
 Route::get('/users/{user}', [DashBoardController::class, 'userShow'])->whereNumber('user');
 Route::get('/users/{user}/edit', [DashBoardController::class, 'userEdit'])->whereNumber('user');
+Route::get('/unauthorized', [DashBoardController::class, 'unauthorized']);
 Route::get('/', [DashBoardController::class, 'index']);
 Route::get('/', [DashBoardController::class, 'reports']);
 Route::get('/settings', [DashBoardController::class, 'settings']);

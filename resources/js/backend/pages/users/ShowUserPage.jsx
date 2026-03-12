@@ -1,9 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, usePage } from '@inertiajs/react';
+import useAuth from '../../../shared/hooks/useAuth';
 
 function ShowUserPage() {
     const { userId } = usePage().props;
+    const { isAuthenticated } = useAuth();
     const userRole = useMemo(() => localStorage.getItem('role') || 'user', []);
+    const canAccessUsers = isAuthenticated && ['admin', 'superadmin'].includes(userRole.toLowerCase());
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
@@ -38,6 +41,10 @@ function ShowUserPage() {
     };
 
     useEffect(() => {
+        if (!canAccessUsers) {
+            return;
+        }
+
         const loadUser = async () => {
             setIsLoading(true);
 
@@ -53,7 +60,12 @@ function ShowUserPage() {
         };
 
         loadUser();
-    }, [userId]);
+    }, [userId, canAccessUsers]);
+
+    if (!canAccessUsers) {
+        window.location.replace('/dashbaord/unauthorized');
+        return null;
+    }
 
     return (
         <div className="mx-auto max-w-7xl space-y-6">
