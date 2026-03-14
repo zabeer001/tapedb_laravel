@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import CreateTapeHeader from './layout/CreateTapeHeader';
 import CreateTapeError from './layout/CreateTapeError';
 import CreateTapeGeneralSection from './sections/CreateTapeGeneralSection';
@@ -8,8 +8,7 @@ import useCreateTapeStore from '../_store/useCreateTapeStore';
 import useAuth from '../../../../../shared/hooks/useAuth';
 
 function CreateTape() {
-    const { isAuthenticated } = useAuth();
-    const role = useMemo(() => (localStorage.getItem('role') || 'user').toLowerCase(), []);
+    const { isAuthenticated, role } = useAuth();
     const canAccessCreate = isAuthenticated && ['admin', 'superadmin', 'editor'].includes(role);
     const isSaving = useCreateTapeStore((state) => state.isSaving);
     const error = useCreateTapeStore((state) => state.error);

@@ -1,0 +1,1 @@
+import{j as n}from"./app-DBVJPGBl.js";function t(...a){return a.filter(Boolean).join(" ")}function r({children:a,tone:s="neutral"}){const e={neutral:"badge-ghost",success:"badge-success",warning:"badge-warning",info:"badge-info"};return n.jsx("span",{className:t("badge badge-sm",e[s]),children:a})}export{r as default};

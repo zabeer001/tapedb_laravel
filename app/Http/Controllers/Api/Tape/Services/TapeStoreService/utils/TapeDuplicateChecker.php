@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Tape\Services\TapeStoreService\utils;
 
 use App\Models\Tape;
+use Illuminate\Validation\ValidationException;
 
 class TapeDuplicateChecker
 {
@@ -43,5 +44,19 @@ class TapeDuplicateChecker
         }
 
         return $query->exists();
+    }
+
+    public function ensureNotDuplicate(array $validated): void
+    {
+        $candidate = [];
+        foreach (self::FIELDS as $field) {
+            $candidate[$field] = $validated[$field] ?? null;
+        }
+
+        if ($this->isDuplicate($candidate)) {
+            throw ValidationException::withMessages([
+                'duplicate' => ['This tape is totally duplicate.'],
+            ]);
+        }
     }
 }

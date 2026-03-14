@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 import useEditTapeStore from '../_store/useEditTapeStore';
 import EditTapeHeader from './layout/EditTapeHeader';
@@ -11,8 +11,7 @@ import useAuth from '../../../../../shared/hooks/useAuth';
 
 function EditTape() {
     const { tapeId } = usePage().props;
-    const { isAuthenticated } = useAuth();
-    const role = useMemo(() => (localStorage.getItem('role') || 'user').toLowerCase(), []);
+    const { isAuthenticated, role } = useAuth();
     const canAccessEdit = isAuthenticated && ['admin', 'superadmin', 'editor'].includes(role);
     const isLoading = useEditTapeStore((state) => state.isLoading);
     const isSaving = useEditTapeStore((state) => state.isSaving);

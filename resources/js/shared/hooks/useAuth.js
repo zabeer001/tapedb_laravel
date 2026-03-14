@@ -5,12 +5,18 @@ function readAuthState() {
     return Boolean(getAccessToken());
 }
 
+function readRole() {
+    return (localStorage.getItem('role') || 'user').toLowerCase();
+}
+
 export default function useAuth() {
     const [isAuthenticated, setIsAuthenticated] = useState(readAuthState);
+    const [role, setRole] = useState(readRole);
 
     useEffect(() => {
         const syncAuthState = () => {
             setIsAuthenticated(readAuthState());
+            setRole(readRole());
         };
 
         window.addEventListener('storage', syncAuthState);
@@ -24,5 +30,7 @@ export default function useAuth() {
 
     return {
         isAuthenticated,
+        role,
+        isAdminOrSuperadmin: role === 'admin' || role === 'superadmin',
     };
 }

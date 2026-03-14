@@ -1,5 +1,6 @@
 import React from 'react';
 import useEditTapeStore from '../../_store/useEditTapeStore';
+import useAuth from '../../../../../../shared/hooks/useAuth';
 
 const MAIN_FIELDS = [
     { label: 'Title', name: 'title', placeholder: 'Tape title' },
@@ -52,8 +53,12 @@ function isChecked(value) {
 }
 
 function EditTapeGeneralSection() {
+    const { isAdminOrSuperadmin } = useAuth();
     const form = useEditTapeStore((state) => state.form);
     const setField = useEditTapeStore((state) => state.setField);
+    const visibleFlagFields = isAdminOrSuperadmin
+        ? FLAG_FIELDS
+        : FLAG_FIELDS.filter((field) => field.name !== 'qa_checked');
 
     const onTextChange = (event) => {
         const { name, value } = event.target;
@@ -74,7 +79,7 @@ function EditTapeGeneralSection() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-4 md:justify-end">
-                    {FLAG_FIELDS.map((field) => (
+                    {visibleFlagFields.map((field) => (
                         <CheckboxField
                             key={field.name}
                             field={field}

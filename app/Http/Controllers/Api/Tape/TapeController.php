@@ -25,7 +25,8 @@ class TapeController extends Controller
         $this->middleware(['auth:api', 'role:admin,superadmin'])->only(['destroy']);
       
         $this->middleware('throttle:300,1')->only(['index']);
-        $this->middleware('throttle:20,1')->except(['index']);
+        $this->middleware('throttle:5,1')->only(['store', 'update']);
+        $this->middleware('throttle:20,1')->except(['index', 'store', 'update']);
     }
 
     public function index(Request $request, TapeIndexService $service): JsonResponse

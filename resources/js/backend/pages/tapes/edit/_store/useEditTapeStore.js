@@ -49,10 +49,23 @@ function normalizeBinaryFlag(value) {
     return value === 1 || value === '1' || value === true ? 1 : 0;
 }
 
-function buildPayload(form, files, removeImages) {
+function canManageQaChecked() {
+    if (typeof window === 'undefined') {
+        return false;
+    }
+
+    const role = (window.localStorage.getItem('role') || 'user').toLowerCase();
+    return role === 'admin' || role === 'superadmin';
+}
+
+function buildPayload(form, files, removeImages, allowQaChecked) {
     const payload = new FormData();
 
     Object.entries(form).forEach(([key, value]) => {
+        if (key === 'qa_checked' && !allowQaChecked) {
+            return;
+        }
+
         if (key === 'approved') {
             payload.append(key, value ? '1' : '0');
             return;
@@ -202,7 +215,7 @@ const useEditTapeStore = create((set, get) => ({
         set({ isSaving: true, error: '' });
 
         const { form, files, removeImages } = get();
-        const payload = buildPayload(form, files, removeImages);
+        const payload = buildPayload(form, files, removeImages, canManageQaChecked());
 
         try {
             await updateTape(tapeId, payload);

@@ -37,10 +37,23 @@ function withFormField(form, name, value) {
     };
 }
 
-function buildFormPayload(form, files) {
+function canManageQaChecked() {
+    if (typeof window === 'undefined') {
+        return false;
+    }
+
+    const role = (window.localStorage.getItem('role') || 'user').toLowerCase();
+    return role === 'admin' || role === 'superadmin';
+}
+
+function buildFormPayload(form, files, allowQaChecked) {
     const payload = new FormData();
 
     Object.entries(form).forEach(([key, value]) => {
+        if (key === 'qa_checked' && !allowQaChecked) {
+            return;
+        }
+
         if (key === 'approved') {
             payload.append(key, value ? '1' : '0');
             return;
@@ -113,7 +126,7 @@ const useCreateTapeStore = create((set, get) => ({
         set({ isSaving: true, error: '' });
 
         const { form, files } = get();
-        const payload = buildFormPayload(form, files);
+        const payload = buildFormPayload(form, files, canManageQaChecked());
 
         try {
             await createTape(payload);

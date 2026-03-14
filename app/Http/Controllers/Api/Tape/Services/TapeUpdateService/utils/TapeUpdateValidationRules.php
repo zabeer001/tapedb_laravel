@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Api\Tape\Services\TapeUpdateService\utils;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+
 class TapeUpdateValidationRules
 {
     public function rules(): array
     {
+        $canSetQaChecked = in_array((string) Auth::guard('api')->user()?->role, ['admin', 'superadmin'], true);
+
         return [
             'name' => 'sometimes|nullable|string|max:191',
             'title' => 'sometimes|nullable|string|max:191',
@@ -17,7 +22,13 @@ class TapeUpdateValidationRules
             'watermarks' => 'sometimes|nullable|string',
             'etching' => 'sometimes|nullable|string',
             'notes' => 'sometimes|nullable|string',
-            'qa_checked' => 'sometimes|nullable|string|max:10',
+            'qa_checked' => [
+                'sometimes',
+                'nullable',
+                'string',
+                'max:10',
+                Rule::prohibitedIf(! $canSetQaChecked),
+            ],
             'screener' => 'sometimes|nullable|string|max:10',
             'first_printer' => 'sometimes|nullable|string|max:10',
             'guard_color' => 'sometimes|nullable|string|max:255',
