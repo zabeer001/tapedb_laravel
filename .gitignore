@@ -24,4 +24,5 @@ Homestead.yaml
 Thumbs.db
 .htaccess
 wp-tapedb-31f2d011efdd.json
+/wp-content
 public/wp-content/
